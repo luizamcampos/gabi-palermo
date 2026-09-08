@@ -49,9 +49,8 @@
       background-color: #f7f5ec;
       background-image: url("papel.JPG");
       background-position: left top;
-      background-size: 620px auto;
+      background-size: 760px auto;
       background-repeat: repeat;
-      background-blend-mode: screen;
       font-family: var(--serif);
     }
 
@@ -63,21 +62,6 @@
     img {
       display: block;
       width: 100%;
-    }
-
-    .skip-link {
-      position: fixed;
-      top: 12px;
-      left: 12px;
-      z-index: 100;
-      padding: 10px 14px;
-      color: var(--paper-light);
-      background: var(--ink);
-      transform: translateY(-150%);
-    }
-
-    .skip-link:focus {
-      transform: translateY(0);
     }
 
     .hero {
@@ -93,9 +77,8 @@
       top: clamp(20px, 3vw, 38px);
       right: clamp(22px, 4vw, 58px);
       left: clamp(22px, 4vw, 58px);
-      z-index: 5;
+      z-index: 10;
       display: flex;
-      align-items: center;
       justify-content: flex-end;
       font-size: .95rem;
       letter-spacing: .08em;
@@ -122,7 +105,6 @@
       left: 0;
       height: 1px;
       background: currentColor;
-      transform-origin: left;
       transition: transform .25s ease;
     }
 
@@ -138,10 +120,10 @@
 
     .hero-photo-wrap {
       position: absolute;
-      top: 7%;
-      left: 3%;
-      z-index: 2;
-      width: clamp(290px, 44vw, 540px);
+      top: 13%;
+      left: 5%;
+      z-index: 1;
+      width: clamp(290px, 42vw, 520px);
       aspect-ratio: 1 / 1.15;
       overflow: hidden;
     }
@@ -155,16 +137,16 @@
 
     .hero-title {
       position: absolute;
-      top: 7%;
-      left: 11%;
-      z-index: 1;
-      width: 94%;
+      top: 16%;
+      left: 43%;
+      z-index: 3;
+      width: 56%;
       font-family: var(--hand);
-      font-size: clamp(5.4rem, 12vw, 10.5rem);
+      font-size: clamp(4.2rem, 7.3vw, 7.8rem);
       font-weight: 400;
-      line-height: .82;
+      line-height: .86;
       letter-spacing: -.035em;
-      transform: rotate(-3deg);
+      transform: rotate(-2deg);
     }
 
     .hero-title span {
@@ -174,31 +156,25 @@
     }
 
     .hero-title span:nth-child(2) {
-      margin-left: 10%;
+      margin-left: 7%;
     }
 
     .hero-title span:nth-child(3) {
-      margin-left: 2%;
+      margin-left: 1%;
     }
 
     .hero-title span:nth-child(4) {
-      margin-left: 13%;
+      margin-left: 9%;
     }
 
     .traits {
       position: absolute;
-      right: 1%;
-      bottom: 3%;
-      left: 1%;
+      inset: 0;
       z-index: 4;
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      gap: 24px;
+      pointer-events: none;
     }
 
     .trait {
-      position: relative;
       font-family: var(--hand);
       font-size: clamp(1.25rem, 1.8vw, 1.75rem);
       line-height: 1;
@@ -216,22 +192,37 @@
     }
 
     .trait-1 {
-      transform: rotate(-4deg);
+      position: absolute;
+      top: 24%;
+      left: 0;
+      transform: rotate(-5deg);
     }
 
     .trait-2 {
-      transform: translateY(-20px) rotate(2deg);
+      position: absolute;
+      right: 3%;
+      bottom: 7%;
+      transform: rotate(2deg);
     }
 
     .trait-3 {
-      transform: rotate(-2deg);
+      position: absolute;
+      bottom: 4%;
+      left: 13%;
+      transform: rotate(-3deg);
     }
 
     .trait-4 {
-      transform: translateY(-17px) rotate(3deg);
+      position: absolute;
+      top: 13%;
+      right: 2%;
+      transform: rotate(4deg);
     }
 
     .trait-5 {
+      position: absolute;
+      bottom: 15%;
+      left: 47%;
       transform: rotate(-2deg);
     }
 
@@ -281,6 +272,7 @@
     }
 
     .about-photo {
+      width: 100%;
       aspect-ratio: 4 / 5;
       object-fit: cover;
       filter: saturate(.85) contrast(.98);
@@ -472,22 +464,22 @@
       }
 
       .hero-photo-wrap {
-        top: 14%;
-        left: 0;
-        width: min(72vw, 350px);
+        top: 16%;
+        left: 3%;
+        width: min(68vw, 340px);
         aspect-ratio: 1 / 1.18;
       }
 
       .hero-title {
-        top: 16%;
-        left: 4%;
-        width: 100%;
-        font-size: clamp(4.6rem, 22vw, 7rem);
-        line-height: .83;
+        top: 22%;
+        left: 49%;
+        width: 50%;
+        font-size: clamp(3.2rem, 14vw, 5.4rem);
+        line-height: .88;
       }
 
       .hero-title span:nth-child(2) {
-        margin-left: 5%;
+        margin-left: 4%;
       }
 
       .hero-title span:nth-child(3) {
@@ -495,30 +487,36 @@
       }
 
       .hero-title span:nth-child(4) {
-        margin-left: 8%;
-      }
-
-      .traits {
-        right: 1%;
-        bottom: 1%;
-        left: 1%;
-        display: grid;
-        grid-template-columns: repeat(3, max-content);
-        justify-content: space-between;
-        align-items: center;
-        gap: 18px 12px;
+        margin-left: 5%;
       }
 
       .trait {
         font-size: clamp(1.15rem, 4.8vw, 1.5rem);
       }
 
-      .trait-1,
-      .trait-2,
-      .trait-3,
-      .trait-4,
+      .trait-1 {
+        top: 13%;
+        left: 0;
+      }
+
+      .trait-2 {
+        right: 0;
+        bottom: 6%;
+      }
+
+      .trait-3 {
+        bottom: 5%;
+        left: 2%;
+      }
+
+      .trait-4 {
+        top: 72%;
+        right: 1%;
+      }
+
       .trait-5 {
-        transform: none;
+        bottom: 13%;
+        left: 34%;
       }
 
       .about {
@@ -556,11 +554,6 @@
         gap: 10px 18px;
       }
 
-      .traits {
-        grid-template-columns: repeat(2, max-content);
-        justify-content: space-around;
-      }
-
       .contacts h2 {
         font-size: 4.2rem;
       }
@@ -592,12 +585,10 @@
 </head>
 
 <body>
-  <a class="skip-link" href="#sobre">Ir para o conteúdo</a>
-
   <main>
-    <section class="hero" aria-labelledby="titulo-principal">
+    <section class="hero">
       <header class="topbar">
-        <nav class="main-nav" aria-label="Navegação principal">
+        <nav class="main-nav">
           <a class="nav-link" href="#sobre">Sobre mim</a>
           <a class="nav-link" href="palermo.html">Palermo</a>
           <a class="nav-link" href="arte.html">Arte</a>
@@ -605,7 +596,7 @@
         </nav>
       </header>
 
-      <div class="hero-canvas" id="top">
+      <div class="hero-canvas">
         <figure class="hero-photo-wrap">
           <img
             class="hero-photo"
@@ -614,21 +605,14 @@
           >
         </figure>
 
-        <h1
-          class="hero-title"
-          id="titulo-principal"
-          aria-label="Gabi Palermo"
-        >
+        <h1 class="hero-title">
           <span>Gabi Palermo</span>
-          <span aria-hidden="true">Gabi Palermo</span>
-          <span aria-hidden="true">Gabi Palermo</span>
-          <span aria-hidden="true">Gabi Palermo</span>
+          <span>Gabi Palermo</span>
+          <span>Gabi Palermo</span>
+          <span>Gabi Palermo</span>
         </h1>
 
-        <div
-          class="traits"
-          aria-label="Intensidade, sensibilidade, coragem, ousadia e contradições"
-        >
+        <div class="traits">
           <span class="trait trait-1">intensidade</span>
           <span class="trait trait-2">sensibilidade</span>
           <span class="trait trait-3">coragem</span>
@@ -693,7 +677,7 @@
       </div>
     </section>
 
-    <section class="contacts" id="contato">
+    <section class="contacts">
       <div class="contacts-inner reveal">
         <h2>vamos conversar?</h2>
 
