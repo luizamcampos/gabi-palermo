@@ -9,19 +9,26 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <link
-    href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap"
-    rel="stylesheet"
-  >
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 
   <style>
+    @font-face {
+      font-family: "Brittany Signature";
+      src:
+        local("Brittany Signature"),
+        url("BrittanySignature.ttf") format("truetype");
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+
     :root {
       --paper: #f2eee2;
       --paper-light: #faf7ed;
       --ink: #161511;
       --wine: #762f36;
       --serif: "Cormorant Garamond", Georgia, serif;
-      --hand: "Caveat", "Segoe Print", cursive;
+      --hand: "Brittany Signature", "Caveat", "Segoe Print", cursive;
     }
 
     * {
@@ -41,9 +48,10 @@
       color: var(--ink);
       background-color: #f7f5ec;
       background-image: url("papel.JPG");
-      background-position: center top;
-      background-size: 100% auto;
-      background-repeat: repeat-y;
+      background-position: left top;
+      background-size: 620px auto;
+      background-repeat: repeat;
+      background-blend-mode: screen;
       font-family: var(--serif);
     }
 
@@ -72,37 +80,26 @@
       transform: translateY(0);
     }
 
-    /* ABERTURA */
-
     .hero {
       position: relative;
       min-height: 100svh;
       padding: clamp(22px, 3vw, 42px);
       display: grid;
       place-items: center;
-      isolation: isolate;
     }
 
     .topbar {
       position: absolute;
-      inset:
-        clamp(20px, 3vw, 38px)
-        clamp(22px, 4vw, 58px)
-        auto;
+      top: clamp(20px, 3vw, 38px);
+      right: clamp(22px, 4vw, 58px);
+      left: clamp(22px, 4vw, 58px);
       z-index: 5;
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: flex-end;
       font-size: .95rem;
       letter-spacing: .08em;
       text-transform: uppercase;
-    }
-
-    .monogram {
-      font-family: var(--hand);
-      font-size: 1.55rem;
-      letter-spacing: 0;
-      text-transform: none;
     }
 
     .main-nav {
@@ -129,8 +126,7 @@
       transition: transform .25s ease;
     }
 
-    .nav-link:hover::after,
-    .nav-link:focus-visible::after {
+    .nav-link:hover::after {
       transform: scaleX(.45);
     }
 
@@ -144,7 +140,7 @@
       position: absolute;
       top: 7%;
       left: 3%;
-      z-index: 1;
+      z-index: 2;
       width: clamp(290px, 44vw, 540px);
       aspect-ratio: 1 / 1.15;
       overflow: hidden;
@@ -161,13 +157,13 @@
       position: absolute;
       top: 7%;
       left: 11%;
-      z-index: 3;
+      z-index: 1;
       width: 94%;
       font-family: var(--hand);
       font-size: clamp(5.4rem, 12vw, 10.5rem);
-      font-weight: 500;
-      line-height: .69;
-      letter-spacing: -.06em;
+      font-weight: 400;
+      line-height: .82;
+      letter-spacing: -.035em;
       transform: rotate(-3deg);
     }
 
@@ -189,11 +185,22 @@
       margin-left: 13%;
     }
 
-    .trait {
+    .traits {
       position: absolute;
+      right: 1%;
+      bottom: 3%;
+      left: 1%;
       z-index: 4;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .trait {
+      position: relative;
       font-family: var(--hand);
-      font-size: clamp(1.15rem, 2vw, 1.8rem);
+      font-size: clamp(1.25rem, 1.8vw, 1.75rem);
       line-height: 1;
       white-space: nowrap;
     }
@@ -206,40 +213,27 @@
       margin-top: 3px;
       background: var(--ink);
       transform: rotate(-2deg);
-      transform-origin: left;
     }
 
     .trait-1 {
-      bottom: 12%;
-      left: 4%;
-      transform: rotate(-5deg);
+      transform: rotate(-4deg);
     }
 
     .trait-2 {
-      bottom: 19%;
-      left: 25%;
-      transform: rotate(3deg);
+      transform: translateY(-20px) rotate(2deg);
     }
 
     .trait-3 {
-      bottom: 8%;
-      left: 47%;
-      transform: rotate(-3deg);
-    }
-
-    .trait-4 {
-      right: 18%;
-      bottom: 17%;
-      transform: rotate(4deg);
-    }
-
-    .trait-5 {
-      right: 2%;
-      bottom: 7%;
       transform: rotate(-2deg);
     }
 
-    /* SOBRE MIM */
+    .trait-4 {
+      transform: translateY(-17px) rotate(3deg);
+    }
+
+    .trait-5 {
+      transform: rotate(-2deg);
+    }
 
     .about {
       min-height: 115svh;
@@ -283,7 +277,6 @@
       width: 82px;
       height: 23px;
       background: rgba(211, 198, 164, .54);
-      box-shadow: inset 0 0 9px rgba(255, 255, 255, .45);
       transform: translateX(-50%) rotate(1deg);
     }
 
@@ -346,8 +339,6 @@
       display: block;
       margin-left: 1.25em;
     }
-
-    /* CONTATOS */
 
     .contacts {
       position: relative;
@@ -415,11 +406,9 @@
         transform .3s ease;
     }
 
-    .contact-link:hover,
-    .contact-link:focus-visible {
+    .contact-link:hover {
       color: var(--ink);
       background: var(--paper-light);
-      outline: none;
       transform: translateY(-7px) rotate(-3deg);
     }
 
@@ -452,8 +441,6 @@
       opacity: .7;
     }
 
-    /* REVELAÇÃO AO ROLAR */
-
     .reveal {
       opacity: 0;
       transform: translateY(42px);
@@ -474,8 +461,6 @@
     .delay-2 {
       transition-delay: .24s;
     }
-
-    /* CELULAR */
 
     @media (max-width: 760px) {
       .hero {
@@ -498,7 +483,7 @@
         left: 4%;
         width: 100%;
         font-size: clamp(4.6rem, 22vw, 7rem);
-        line-height: .7;
+        line-height: .83;
       }
 
       .hero-title span:nth-child(2) {
@@ -513,33 +498,27 @@
         margin-left: 8%;
       }
 
+      .traits {
+        right: 1%;
+        bottom: 1%;
+        left: 1%;
+        display: grid;
+        grid-template-columns: repeat(3, max-content);
+        justify-content: space-between;
+        align-items: center;
+        gap: 18px 12px;
+      }
+
       .trait {
-        font-size: clamp(1.1rem, 5.2vw, 1.55rem);
+        font-size: clamp(1.15rem, 4.8vw, 1.5rem);
       }
 
-      .trait-1 {
-        bottom: 13%;
-        left: 0;
-      }
-
-      .trait-2 {
-        bottom: 8%;
-        left: 21%;
-      }
-
-      .trait-3 {
-        bottom: 16%;
-        left: 43%;
-      }
-
-      .trait-4 {
-        right: 14%;
-        bottom: 8%;
-      }
-
+      .trait-1,
+      .trait-2,
+      .trait-3,
+      .trait-4,
       .trait-5 {
-        right: 0;
-        bottom: 14%;
+        transform: none;
       }
 
       .about {
@@ -555,20 +534,12 @@
         width: min(82vw, 390px);
       }
 
-      .about-text {
-        max-width: 620px;
-      }
-
       .contact-list {
         gap: 14px;
       }
 
       .contact-link {
         width: clamp(74px, 23vw, 96px);
-      }
-
-      .footer-line {
-        gap: 20px;
       }
     }
 
@@ -579,13 +550,15 @@
       }
 
       .main-nav {
-        max-width: 265px;
+        width: 100%;
         flex-wrap: wrap;
-        gap: 8px 15px;
+        justify-content: center;
+        gap: 10px 18px;
       }
 
-      .trait-5 {
-        display: none;
+      .traits {
+        grid-template-columns: repeat(2, max-content);
+        justify-content: space-around;
       }
 
       .contacts h2 {
@@ -624,14 +597,6 @@
   <main>
     <section class="hero" aria-labelledby="titulo-principal">
       <header class="topbar">
-        <a
-          class="monogram"
-          href="#top"
-          aria-label="Gabi Palermo, início"
-        >
-          g.p.
-        </a>
-
         <nav class="main-nav" aria-label="Navegação principal">
           <a class="nav-link" href="#sobre">Sobre mim</a>
           <a class="nav-link" href="palermo.html">Palermo</a>
@@ -660,25 +625,26 @@
           <span aria-hidden="true">Gabi Palermo</span>
         </h1>
 
-        <span class="trait trait-1">intensidade</span>
-        <span class="trait trait-2">sensibilidade</span>
-        <span class="trait trait-3">coragem</span>
-        <span class="trait trait-4">ousadia</span>
-        <span class="trait trait-5">contradições</span>
+        <div
+          class="traits"
+          aria-label="Intensidade, sensibilidade, coragem, ousadia e contradições"
+        >
+          <span class="trait trait-1">intensidade</span>
+          <span class="trait trait-2">sensibilidade</span>
+          <span class="trait trait-3">coragem</span>
+          <span class="trait trait-4">ousadia</span>
+          <span class="trait trait-5">contradições</span>
+        </div>
       </div>
     </section>
 
-    <section
-      class="about"
-      id="sobre"
-      aria-labelledby="titulo-sobre"
-    >
+    <section class="about" id="sobre">
       <div class="about-inner">
         <figure class="about-photo-wrap reveal">
           <img
             class="about-photo"
             src="foto2.jpg"
-            alt="Gabi Palermo em um momento de sua rotina criativa"
+            alt="Gabi Palermo"
             loading="lazy"
           >
 
@@ -692,7 +658,7 @@
             Quem é Gabriela antes de qualquer cargo
           </p>
 
-          <h2 class="reveal delay-1" id="titulo-sobre">
+          <h2 class="reveal delay-1">
             Eu gosto de construir.
           </h2>
 
@@ -727,30 +693,24 @@
       </div>
     </section>
 
-    <section
-      class="contacts"
-      id="contato"
-      aria-labelledby="titulo-contato"
-    >
+    <section class="contacts" id="contato">
       <div class="contacts-inner reveal">
-        <h2 id="titulo-contato">
-          vamos conversar?
-        </h2>
+        <h2>vamos conversar?</h2>
 
         <p class="contacts-intro">
           Para projetos, criações e encontros que façam sentido.
         </p>
 
-        <ul class="contact-list" aria-label="Formas de contato">
+        <ul class="contact-list">
           <li>
             <a
               class="contact-link"
               href="https://wa.me/5511984842027"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Conversar com Gabi pelo WhatsApp"
+              aria-label="WhatsApp"
             >
-              <svg viewBox="0 0 24 24" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
                 <path d="M20 11.6a8 8 0 0 1-11.8 7L4 20l1.4-4A8 8 0 1 1 20 11.6Z"/>
                 <path d="M9 8.5c.5 2.5 2 4 4.5 5l1.5-1 2 1.5c-.5 1.5-1.5 2-3 2-3.5-.5-6-3-6.5-6.5 0-1.5.5-2.5 1.5-3l1.5 2Z"/>
               </svg>
@@ -765,9 +725,9 @@
               href="https://www.instagram.com/gabipalermoo/"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Ver o Instagram de Gabi Palermo"
+              aria-label="Instagram"
             >
-              <svg viewBox="0 0 24 24" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
                 <rect x="3" y="3" width="18" height="18" rx="5"/>
                 <circle cx="12" cy="12" r="4"/>
                 <circle
@@ -787,9 +747,9 @@
             <a
               class="contact-link"
               href="mailto:gabrielapalermoandrade@gmail.com"
-              aria-label="Enviar um e-mail para Gabi Palermo"
+              aria-label="E-mail"
             >
-              <svg viewBox="0 0 24 24" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
                 <rect x="3" y="5" width="18" height="14" rx="1"/>
                 <path d="m4 7 8 6 8-6"/>
               </svg>
