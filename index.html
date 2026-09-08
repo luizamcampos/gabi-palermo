@@ -13,10 +13,8 @@
 
   <style>
     @font-face {
-      font-family: "Brittany Signature";
-      src:
-        local("Brittany Signature"),
-        url("BrittanySignature.ttf") format("truetype");
+      font-family: "High Spirited";
+      src: url("High Spirited.ttf") format("truetype");
       font-weight: 400;
       font-style: normal;
       font-display: swap;
@@ -28,7 +26,8 @@
       --ink: #161511;
       --wine: #762f36;
       --serif: "Cormorant Garamond", Georgia, serif;
-      --hand: "Brittany Signature", "Caveat", "Segoe Print", cursive;
+      --display: "High Spirited", "Cormorant Garamond", serif;
+      --hand: "Caveat", "Segoe Print", cursive;
     }
 
     * {
@@ -64,13 +63,7 @@
       width: 100%;
     }
 
-    .hero {
-      position: relative;
-      min-height: 100svh;
-      padding: clamp(22px, 3vw, 42px);
-      display: grid;
-      place-items: center;
-    }
+    /* MENU */
 
     .topbar {
       position: absolute;
@@ -112,6 +105,16 @@
       transform: scaleX(.45);
     }
 
+    /* ABERTURA */
+
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      padding: clamp(22px, 3vw, 42px);
+      display: grid;
+      place-items: center;
+    }
+
     .hero-canvas {
       position: relative;
       width: min(1180px, 100%);
@@ -135,13 +138,15 @@
       filter: saturate(.82) contrast(1.02);
     }
 
+    /* GABI PALERMO EM HIGH SPIRITED */
+
     .hero-title {
       position: absolute;
       top: 16%;
       left: 43%;
       z-index: 3;
       width: 56%;
-      font-family: var(--hand);
+      font-family: var(--display);
       font-size: clamp(4.2rem, 7.3vw, 7.8rem);
       font-weight: 400;
       line-height: .86;
@@ -166,6 +171,8 @@
     .hero-title span:nth-child(4) {
       margin-left: 9%;
     }
+
+    /* PALAVRAS ESPALHADAS */
 
     .traits {
       position: absolute;
@@ -225,6 +232,8 @@
       left: 47%;
       transform: rotate(-2deg);
     }
+
+    /* SOBRE MIM */
 
     .about {
       min-height: 115svh;
@@ -297,6 +306,7 @@
     .about h2 {
       max-width: 680px;
       margin-bottom: 30px;
+      font-family: var(--display);
       font-size: clamp(2.8rem, 5.7vw, 5.8rem);
       font-weight: 400;
       line-height: .86;
@@ -332,6 +342,8 @@
       margin-left: 1.25em;
     }
 
+    /* CONTATOS */
+
     .contacts {
       position: relative;
       min-height: 88svh;
@@ -365,7 +377,7 @@
 
     .contacts h2 {
       margin-bottom: 12px;
-      font-family: var(--hand);
+      font-family: var(--display);
       font-size: clamp(4.4rem, 10vw, 9rem);
       font-weight: 400;
       line-height: .85;
@@ -433,6 +445,8 @@
       opacity: .7;
     }
 
+    /* ANIMAÇÃO */
+
     .reveal {
       opacity: 0;
       transform: translateY(42px);
@@ -453,6 +467,8 @@
     .delay-2 {
       transition-delay: .24s;
     }
+
+    /* CELULAR */
 
     @media (max-width: 760px) {
       .hero {
@@ -543,7 +559,6 @@
 
     @media (max-width: 420px) {
       .topbar {
-        align-items: flex-start;
         font-size: .69rem;
       }
 
