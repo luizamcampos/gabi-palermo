@@ -93,11 +93,24 @@
       align-items: center;
       overflow: hidden;
       color: var(--white);
-      background: var(--black);
+      background: #050505;
       border-bottom: 1px solid rgba(255, 255, 255, .16);
+      isolation: isolate;
+      transform: translateZ(0);
+      -webkit-transform: translateZ(0);
+    }
+
+    .ticker::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background: #050505;
     }
 
     .ticker-track {
+      position: relative;
+      z-index: 1;
       display: flex;
       width: max-content;
       white-space: nowrap;
@@ -223,6 +236,11 @@
       .ticker-track {
         animation-duration: 15s;
       }
+
+      .hero-video {
+        transform: translateX(6%) scale(1.12);
+        transform-origin: center center;
+      }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -248,11 +266,6 @@
         preload="auto"
         aria-label="Vídeo de apresentação de Gabi Palermo"
       >
-        <source
-          src="videoprincipal.MOV"
-          type="video/quicktime"
-        >
-
         <source
           src="videoprincipal.mp4"
           type="video/mp4"
