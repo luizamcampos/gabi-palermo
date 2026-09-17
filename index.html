@@ -11,11 +11,20 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
 
   <style>
+    @font-face {
+      font-family: "Altesse";
+      src: url("AltesseStd-DEMO-Regular38pt%202.otf") format("opentype");
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+
     :root {
       --black: #050505;
       --white: #ffffff;
       --bar-height: clamp(58px, 2cm, 76px);
       --font: "DM Sans", Arial, sans-serif;
+      --display: "Altesse", Georgia, serif;
     }
 
     * {
@@ -44,8 +53,6 @@
       color: inherit;
       text-decoration: none;
     }
-
-    /* ABERTURA */
 
     .home {
       position: relative;
@@ -82,7 +89,7 @@
       );
     }
 
-    /* FAIXA PRETA */
+    /* FAIXA SUPERIOR */
 
     .ticker {
       position: absolute;
@@ -129,14 +136,16 @@
     .ticker-text {
       display: inline-flex;
       align-items: center;
+      font-family: var(--display);
       font-size: clamp(1.05rem, 1.7vw, 1.55rem);
-      font-weight: 500;
-      letter-spacing: -.02em;
+      font-weight: 400;
+      letter-spacing: .01em;
     }
 
     .ticker-text::after {
       content: "✦";
       margin: 0 clamp(25px, 4vw, 64px);
+      font-family: var(--font);
       font-size: .65em;
     }
 
@@ -208,7 +217,7 @@
       text-transform: uppercase;
     }
 
-    /* PRIMEIRA PARTE DO ABOUT */
+    /* SOBRE: VÍDEO E INTRODUÇÃO */
 
     .about-split {
       min-height: 100vh;
@@ -251,10 +260,11 @@
     .about-title {
       max-width: 700px;
       margin-bottom: clamp(35px, 4vw, 60px);
+      font-family: var(--display);
       font-size: clamp(2.6rem, 4.3vw, 5rem);
-      font-weight: 500;
-      line-height: .86;
-      letter-spacing: -.07em;
+      font-weight: 400;
+      line-height: .9;
+      letter-spacing: -.025em;
       text-transform: uppercase;
     }
 
@@ -285,10 +295,11 @@
     .manifesto-lead {
       max-width: 900px;
       margin-bottom: clamp(45px, 5vw, 70px);
+      font-family: var(--display);
       font-size: clamp(1.9rem, 3.1vw, 3.7rem);
-      font-weight: 500;
-      line-height: .96;
-      letter-spacing: -.055em;
+      font-weight: 400;
+      line-height: 1;
+      letter-spacing: -.02em;
       text-transform: uppercase;
     }
 
@@ -300,10 +311,11 @@
     }
 
     .build-lines {
+      font-family: var(--display);
       font-size: clamp(1.25rem, 1.8vw, 2.1rem);
-      font-weight: 500;
+      font-weight: 400;
       line-height: 1.12;
-      letter-spacing: -.04em;
+      letter-spacing: -.015em;
       text-transform: uppercase;
     }
 
@@ -326,10 +338,11 @@
       padding: clamp(25px, 3vw, 40px) 0;
       border-top: 1px solid var(--black);
       border-bottom: 1px solid var(--black);
+      font-family: var(--display);
       font-size: clamp(1.9rem, 3.1vw, 3.7rem);
-      font-weight: 500;
-      line-height: .95;
-      letter-spacing: -.055em;
+      font-weight: 400;
+      line-height: 1;
+      letter-spacing: -.02em;
       text-transform: uppercase;
     }
 
@@ -339,10 +352,6 @@
       gap: clamp(25px, 4vw, 55px);
       font-size: clamp(.95rem, 1.05vw, 1.08rem);
       line-height: 1.55;
-    }
-
-    .manifesto-ending p {
-      margin-top: 0 !important;
     }
 
     .manifesto-values {
@@ -367,7 +376,7 @@
     .video-track {
       display: flex;
       width: max-content;
-      animation: video-scroll 55s linear infinite;
+      animation: video-scroll 32s linear infinite;
       will-change: transform;
     }
 
@@ -383,10 +392,6 @@
       flex: 0 0 auto;
       object-fit: cover;
       background: #111;
-    }
-
-    .video-showcase:hover .video-track {
-      animation-play-state: paused;
     }
 
     @keyframes video-scroll {
@@ -413,10 +418,11 @@
     }
 
     .contacts-title {
+      font-family: var(--display);
       font-size: clamp(2.3rem, 4.5vw, 5.4rem);
-      font-weight: 500;
-      line-height: .9;
-      letter-spacing: -.06em;
+      font-weight: 400;
+      line-height: .95;
+      letter-spacing: -.02em;
       text-transform: uppercase;
     }
 
@@ -455,7 +461,7 @@
       stroke-width: 1.7;
     }
 
-    /* ANIMAÇÕES AO ROLAR */
+    /* REVELAÇÃO NA ROLAGEM */
 
     .reveal {
       opacity: 0;
@@ -510,7 +516,7 @@
 
       .hero-video {
         transform: translateX(6%) scale(1.12);
-        transform-origin: center center;
+        transform-origin: center;
       }
 
       .about-split {
@@ -528,7 +534,7 @@
       }
 
       .manifesto {
-        padding: 75px 25px;
+        padding: 100px 25px;
       }
 
       .manifesto-grid {
@@ -545,7 +551,7 @@
       }
 
       .video-track {
-        animation-duration: 42s;
+        animation-duration: 28s;
       }
 
       .contacts {
@@ -557,8 +563,7 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .ticker-track,
-      .video-track {
+      .ticker-track {
         animation-play-state: paused;
       }
 
@@ -580,13 +585,18 @@
         loop
         playsinline
         preload="auto"
+        aria-label="Vídeo de apresentação de Gabi Palermo"
       >
         <source src="videoprincipal.mp4" type="video/mp4">
+        Seu navegador não conseguiu reproduzir o vídeo.
       </video>
 
       <div class="video-fallback">Gabi Palermo</div>
 
-      <div class="ticker">
+      <div
+        class="ticker"
+        aria-label="I don't just create content. I understand brands."
+      >
         <div class="ticker-track">
           <div class="ticker-group">
             <span class="ticker-text">
@@ -656,6 +666,7 @@
           preload="metadata"
         >
           <source src="photobooth.mp4" type="video/mp4">
+          Seu navegador não conseguiu reproduzir o vídeo.
         </video>
       </div>
 
@@ -696,7 +707,10 @@
       </div>
     </section>
 
-    <section class="manifesto">
+    <section
+      class="manifesto"
+      aria-label="Manifesto de Gabi Palermo"
+    >
       <div class="manifesto-inner">
         <p class="manifesto-lead reveal">
           Hoje, esses dois olhares se encontram em tudo o que construo.
@@ -832,12 +846,21 @@
       </div>
     </section>
 
-    <section class="contacts">
-      <h2 class="contacts-title reveal reveal-left">
+    <section
+      class="contacts"
+      aria-labelledby="contacts-title"
+    >
+      <h2
+        class="contacts-title reveal reveal-left"
+        id="contacts-title"
+      >
         Let's talk.
       </h2>
 
-      <ul class="contact-list reveal reveal-right">
+      <ul
+        class="contact-list reveal reveal-right"
+        aria-label="Contatos"
+      >
         <li>
           <a
             class="contact-link"
@@ -846,7 +869,7 @@
             rel="noopener noreferrer"
             aria-label="WhatsApp"
           >
-            <svg viewBox="0 0 24 24">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="M20 11.6a8 8 0 0 1-11.8 7L4 20l1.4-4A8 8 0 1 1 20 11.6Z"/>
               <path d="M9 8.5c.5 2.5 2 4 4.5 5l1.5-1 2 1.5c-.5 1.5-1.5 2-3 2-3.5-.5-6-3-6.5-6.5 0-1.5.5-2.5 1.5-3l1.5 2Z"/>
             </svg>
@@ -861,7 +884,7 @@
             rel="noopener noreferrer"
             aria-label="Instagram"
           >
-            <svg viewBox="0 0 24 24">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
               <rect x="3" y="3" width="18" height="18" rx="5"/>
               <circle cx="12" cy="12" r="4"/>
               <circle
@@ -881,7 +904,7 @@
             href="mailto:gabrielapalermoandrade@gmail.com"
             aria-label="E-mail"
           >
-            <svg viewBox="0 0 24 24">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
               <rect x="3" y="5" width="18" height="14" rx="1"/>
               <path d="m4 7 8 6 8-6"/>
             </svg>
