@@ -19,11 +19,19 @@
       font-display: swap;
     }
 
+    @font-face {
+      font-family: "JMH Typewriter";
+      src: url("JMH%20Typewriter.otf") format("opentype");
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+
     :root {
       --black: #050505;
       --white: #ffffff;
       --bar-height: clamp(58px, 2cm, 76px);
-      --font: "DM Sans", Arial, sans-serif;
+      --font: "JMH Typewriter", "DM Sans", monospace;
       --display: "Altesse", Georgia, serif;
     }
 
@@ -316,15 +324,14 @@
     /* OLHOS INTERATIVOS */
 
     .eyes-stage {
-      min-height: clamp(210px, 24vw, 330px);
+      min-height: clamp(140px, 15vw, 190px);
       display: grid;
       place-items: center;
       overflow: hidden;
-      cursor: crosshair;
     }
 
     .eyes-image {
-      width: min(100%, 290px);
+      width: min(100%, 155px);
       height: auto;
       display: block;
       object-fit: contain;
@@ -345,7 +352,7 @@
     }
 
     .build-lines {
-      font-family: var(--display);
+      font-family: var(--font);
       font-size: clamp(1.25rem, 1.8vw, 2.1rem);
       font-weight: 400;
       line-height: 1.12;
@@ -394,9 +401,10 @@
       flex-wrap: wrap;
       justify-content: space-between;
       gap: 25px;
-      font-size: clamp(.8rem, 1.1vw, 1rem);
-      letter-spacing: .08em;
-      text-transform: uppercase;
+      font-family: var(--display);
+      font-size: clamp(1.15rem, 1.7vw, 1.65rem);
+      letter-spacing: 0;
+      text-transform: none;
     }
 
     /* VÍDEOS DESLIZANDO */
@@ -495,7 +503,7 @@
       stroke-width: 1.7;
     }
 
-    /* REVELAÇÃO NA ROLAGEM */
+    /* ELEMENTOS REVELADOS AO ROLAR */
 
     .reveal {
       opacity: 0;
@@ -580,11 +588,11 @@
       }
 
       .eyes-stage {
-        min-height: 240px;
+        min-height: 170px;
       }
 
       .eyes-image {
-        width: min(72vw, 270px);
+        width: min(42vw, 145px);
         animation: eyes-mobile 4s ease-in-out infinite alternate;
       }
 
@@ -1012,25 +1020,45 @@
       eyesImage &&
       window.matchMedia("(pointer: fine)").matches
     ) {
-      eyesStage.addEventListener("pointermove", (event) => {
-        const bounds = eyesStage.getBoundingClientRect();
+      let pointerX = 0;
+      let pointerY = 0;
+      let scrollMovement = 0;
+      let animationFrame;
 
-        const horizontal =
-          ((event.clientX - bounds.left) / bounds.width - .5) * 2;
-
-        const vertical =
-          ((event.clientY - bounds.top) / bounds.height - .5) * 2;
-
+      const moveEyes = () => {
         eyesImage.style.transform =
-          `translate3d(${horizontal * 28}px, ${vertical * 20}px, 0)
-          rotate(${horizontal * 5}deg)
-          scale(1.035)`;
+          `translate3d(
+            ${pointerX * 18}px,
+            ${pointerY * 13 + scrollMovement}px,
+            0
+          )
+          rotate(${pointerX * 4}deg)
+          scale(1.025)`;
+
+        animationFrame = null;
+      };
+
+      const requestEyesUpdate = () => {
+        if (!animationFrame) {
+          animationFrame = requestAnimationFrame(moveEyes);
+        }
+      };
+
+      window.addEventListener("pointermove", (event) => {
+        pointerX = event.clientX / window.innerWidth * 2 - 1;
+        pointerY = event.clientY / window.innerHeight * 2 - 1;
+
+        requestEyesUpdate();
       });
 
-      eyesStage.addEventListener("pointerleave", () => {
-        eyesImage.style.transform =
-          "translate3d(0, 0, 0) rotate(0deg) scale(1)";
-      });
+      window.addEventListener(
+        "scroll",
+        () => {
+          scrollMovement = Math.sin(window.scrollY / 95) * 9;
+          requestEyesUpdate();
+        },
+        { passive: true }
+      );
     }
 
     const revealElements = document.querySelectorAll(".reveal");
