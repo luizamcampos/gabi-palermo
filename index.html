@@ -208,7 +208,7 @@
       text-transform: uppercase;
     }
 
-    /* SOBRE */
+    /* PRIMEIRA PARTE DO ABOUT */
 
     .about-split {
       min-height: 100vh;
@@ -268,43 +268,42 @@
       margin-top: 1.25em;
     }
 
-    /* MANIFESTO */
+    /* ABOUT COMPACTO */
 
     .manifesto {
-      min-height: 100vh;
-      padding: clamp(85px, 9vw, 140px) clamp(32px, 6vw, 100px);
+      padding: clamp(70px, 7vw, 105px) clamp(32px, 6vw, 100px);
       color: var(--black);
       background: var(--white);
       border-top: 1px solid #d8d8d8;
     }
 
     .manifesto-inner {
-      width: 100%;
+      width: min(1200px, 100%);
       margin: 0 auto;
     }
 
     .manifesto-lead {
-      max-width: 1250px;
-      margin-bottom: clamp(70px, 8vw, 120px);
-      font-size: clamp(2.2rem, 3.6vw, 4.3rem);
+      max-width: 900px;
+      margin-bottom: clamp(45px, 5vw, 70px);
+      font-size: clamp(1.9rem, 3.1vw, 3.7rem);
       font-weight: 500;
-      line-height: .92;
-      letter-spacing: -.065em;
+      line-height: .96;
+      letter-spacing: -.055em;
       text-transform: uppercase;
     }
 
     .manifesto-grid {
       display: grid;
-      grid-template-columns: minmax(260px, .75fr) minmax(420px, 1.25fr);
-      gap: clamp(55px, 8vw, 110px);
+      grid-template-columns: minmax(230px, .7fr) minmax(420px, 1.3fr);
+      gap: clamp(45px, 7vw, 90px);
       align-items: start;
     }
 
     .build-lines {
-      font-size: clamp(1.6rem, 2.2vw, 2.7rem);
+      font-size: clamp(1.25rem, 1.8vw, 2.1rem);
       font-weight: 500;
-      line-height: 1.04;
-      letter-spacing: -.05em;
+      line-height: 1.12;
+      letter-spacing: -.04em;
       text-transform: uppercase;
     }
 
@@ -314,8 +313,8 @@
 
     .manifesto-copy {
       max-width: 760px;
-      font-size: clamp(1.05rem, 1.25vw, 1.3rem);
-      line-height: 1.55;
+      font-size: clamp(.96rem, 1.05vw, 1.08rem);
+      line-height: 1.6;
     }
 
     .manifesto-copy p + p {
@@ -323,23 +322,27 @@
     }
 
     .point-of-view {
-      margin: clamp(75px, 9vw, 130px) 0;
-      padding: clamp(35px, 4vw, 60px) 0;
+      margin: clamp(55px, 6vw, 80px) 0 clamp(45px, 5vw, 65px);
+      padding: clamp(25px, 3vw, 40px) 0;
       border-top: 1px solid var(--black);
       border-bottom: 1px solid var(--black);
-      font-size: clamp(2.2rem, 3.8vw, 4.6rem);
+      font-size: clamp(1.9rem, 3.1vw, 3.7rem);
       font-weight: 500;
-      line-height: .9;
-      letter-spacing: -.07em;
+      line-height: .95;
+      letter-spacing: -.055em;
       text-transform: uppercase;
     }
 
     .manifesto-ending {
-      max-width: 1050px;
-      margin-left: auto;
-      font-size: clamp(1.3rem, 2.2vw, 2.55rem);
-      line-height: 1.16;
-      letter-spacing: -.035em;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(25px, 4vw, 55px);
+      font-size: clamp(.95rem, 1.05vw, 1.08rem);
+      line-height: 1.55;
+    }
+
+    .manifesto-ending p {
+      margin-top: 0 !important;
     }
 
     .manifesto-values {
@@ -351,6 +354,49 @@
       font-size: clamp(.8rem, 1.1vw, 1rem);
       letter-spacing: .08em;
       text-transform: uppercase;
+    }
+
+    /* VÍDEOS DESLIZANDO */
+
+    .video-showcase {
+      width: 100%;
+      overflow: hidden;
+      background: var(--black);
+    }
+
+    .video-track {
+      display: flex;
+      width: max-content;
+      animation: video-scroll 55s linear infinite;
+      will-change: transform;
+    }
+
+    .video-group {
+      display: flex;
+      flex-shrink: 0;
+    }
+
+    .showcase-video {
+      width: clamp(210px, 19vw, 300px);
+      height: clamp(360px, 34vw, 520px);
+      display: block;
+      flex: 0 0 auto;
+      object-fit: cover;
+      background: #111;
+    }
+
+    .video-showcase:hover .video-track {
+      animation-play-state: paused;
+    }
+
+    @keyframes video-scroll {
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(-50%);
+      }
     }
 
     /* CONTATOS */
@@ -409,7 +455,7 @@
       stroke-width: 1.7;
     }
 
-    /* ANIMAÇÕES */
+    /* ANIMAÇÕES AO ROLAR */
 
     .reveal {
       opacity: 0;
@@ -482,11 +528,24 @@
       }
 
       .manifesto {
-        padding: 100px 25px;
+        padding: 75px 25px;
       }
 
       .manifesto-grid {
         grid-template-columns: 1fr;
+      }
+
+      .manifesto-ending {
+        grid-template-columns: 1fr;
+      }
+
+      .showcase-video {
+        width: 58vw;
+        height: 88vw;
+      }
+
+      .video-track {
+        animation-duration: 42s;
       }
 
       .contacts {
@@ -498,7 +557,8 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .ticker-track {
+      .ticker-track,
+      .video-track {
         animation-play-state: paused;
       }
 
@@ -520,18 +580,13 @@
         loop
         playsinline
         preload="auto"
-        aria-label="Vídeo de apresentação de Gabi Palermo"
       >
         <source src="videoprincipal.mp4" type="video/mp4">
-        Seu navegador não conseguiu reproduzir o vídeo.
       </video>
 
       <div class="video-fallback">Gabi Palermo</div>
 
-      <div
-        class="ticker"
-        aria-label="I don't just create content. I understand brands."
-      >
+      <div class="ticker">
         <div class="ticker-track">
           <div class="ticker-group">
             <span class="ticker-text">
@@ -601,7 +656,6 @@
           preload="metadata"
         >
           <source src="photobooth.mp4" type="video/mp4">
-          Seu navegador não conseguiu reproduzir o vídeo.
         </video>
       </div>
 
@@ -619,17 +673,11 @@
         </h1>
 
         <div class="about-intro">
-          <p
-            class="reveal"
-            style="--delay: .16s;"
-          >
+          <p class="reveal" style="--delay: .16s;">
             Nunca soube viver pela metade.
           </p>
 
-          <p
-            class="reveal"
-            style="--delay: .24s;"
-          >
+          <p class="reveal" style="--delay: .24s;">
             Gosto do que provoca, do que desloca e do que faz sentir.
             Talvez por isso minha trajetória sempre tenha acontecido
             no encontro entre mundos aparentemente diferentes:
@@ -637,10 +685,7 @@
             a tradição e a vontade de fazer diferente.
           </p>
 
-          <p
-            class="reveal"
-            style="--delay: .32s;"
-          >
+          <p class="reveal" style="--delay: .32s;">
             Me formei em Fashion Design, em Milão, porque sempre
             enxerguei a moda como uma forma de linguagem. Depois,
             escolhi estudar Administração, no Brasil, para entender
@@ -651,10 +696,7 @@
       </div>
     </section>
 
-    <section
-      class="manifesto"
-      aria-label="Manifesto de Gabi Palermo"
-    >
+    <section class="manifesto">
       <div class="manifesto-inner">
         <p class="manifesto-lead reveal">
           Hoje, esses dois olhares se encontram em tudo o que construo.
@@ -669,32 +711,17 @@
           </p>
 
           <div class="manifesto-copy">
-            <p
-              class="reveal"
-              style="--delay: .08s;"
-            >
+            <p class="reveal" style="--delay: .08s;">
               Sou fundadora e diretora criativa da Palermo, uma marca
               que transforma memória, identidade e ancestralidade em
-              algo que pode ser vestido.
+              algo que pode ser vestido. Também sou Head de Marketing
+              na New Dog, unindo criação, estratégia e negócios.
             </p>
 
-            <p
-              class="reveal"
-              style="--delay: .16s;"
-            >
-              Também sou Head de Marketing na New Dog e faço parte da
-              geração que dará continuidade a uma história iniciada
-              muito antes de mim. Cresci cercada por uma empresa familiar
-              que atravessou décadas e transformações. Agora, tenho o
-              privilégio — e a responsabilidade — de imaginar como esse
-              legado continuará vivo no futuro.
-            </p>
-
-            <p
-              class="reveal"
-              style="--delay: .24s;"
-            >
-              Talvez seja isso que mais me defina: eu gosto de construir.
+            <p class="reveal" style="--delay: .16s;">
+              Entre o legado que recebi e aquilo que ainda quero
+              construir, encontro novas formas de manter histórias
+              vivas, relevantes e profundamente verdadeiras.
             </p>
           </div>
         </div>
@@ -707,25 +734,17 @@
         <div class="manifesto-ending">
           <p class="reveal">
             Quero compartilhar aquilo que me atravessa: lugares,
-            pessoas, roupas, viagens, movimentos, ideias, encontros
-            e pequenas coisas que talvez passassem despercebidas.
+            pessoas, roupas, viagens, ideias e encontros.
           </p>
 
-          <p
-            class="reveal"
-            style="--delay: .1s; margin-top: 1.4em;"
-          >
+          <p class="reveal" style="--delay: .1s;">
             Quando uma marca entra no meu universo, ela precisa fazer
             parte da história — e não interrompê-la.
           </p>
 
-          <p
-            class="reveal"
-            style="--delay: .2s; margin-top: 1.4em;"
-          >
-            Acredito em parcerias que tenham conversa, identidade e
-            intenção. Porque não quero apenas mostrar o que existe.
-            Quero encontrar novas formas de fazer as pessoas enxergarem.
+          <p class="reveal" style="--delay: .2s;">
+            Acredito em parcerias com conversa, identidade e intenção.
+            Não quero apenas mostrar. Quero criar novas formas de enxergar.
           </p>
         </div>
 
@@ -739,20 +758,86 @@
     </section>
 
     <section
-      class="contacts"
-      aria-labelledby="contacts-title"
+      class="video-showcase"
+      aria-label="Vídeos de Gabi Palermo"
     >
-      <h2
-        class="contacts-title reveal reveal-left"
-        id="contacts-title"
-      >
+      <div class="video-track">
+        <div class="video-group">
+          <video class="showcase-video" autoplay muted loop playsinline preload="metadata">
+            <source src="video1.MP4" type="video/mp4">
+          </video>
+
+          <video class="showcase-video" autoplay muted loop playsinline preload="metadata">
+            <source src="video2.MP4" type="video/mp4">
+          </video>
+
+          <video class="showcase-video" autoplay muted loop playsinline preload="metadata">
+            <source src="video3.MP4" type="video/mp4">
+          </video>
+
+          <video class="showcase-video" autoplay muted loop playsinline preload="metadata">
+            <source src="video4.MP4" type="video/mp4">
+          </video>
+
+          <video class="showcase-video" autoplay muted loop playsinline preload="metadata">
+            <source src="video5.MP4" type="video/mp4">
+          </video>
+
+          <video class="showcase-video" autoplay muted loop playsinline preload="metadata">
+            <source src="video6.MP4" type="video/mp4">
+          </video>
+
+          <video class="showcase-video" autoplay muted loop playsinline preload="metadata">
+            <source src="video7.MP4" type="video/mp4">
+          </video>
+
+          <video class="showcase-video" autoplay muted loop playsinline preload="metadata">
+            <source src="video8.MP4" type="video/mp4">
+          </video>
+        </div>
+
+        <div class="video-group" aria-hidden="true">
+          <video class="showcase-video" autoplay muted loop playsinline preload="metadata">
+            <source src="video1.MP4" type="video/mp4">
+          </video>
+
+          <video class="showcase-video" autoplay muted loop playsinline preload="metadata">
+            <source src="video2.MP4" type="video/mp4">
+          </video>
+
+          <video class="showcase-video" autoplay muted loop playsinline preload="metadata">
+            <source src="video3.MP4" type="video/mp4">
+          </video>
+
+          <video class="showcase-video" autoplay muted loop playsinline preload="metadata">
+            <source src="video4.MP4" type="video/mp4">
+          </video>
+
+          <video class="showcase-video" autoplay muted loop playsinline preload="metadata">
+            <source src="video5.MP4" type="video/mp4">
+          </video>
+
+          <video class="showcase-video" autoplay muted loop playsinline preload="metadata">
+            <source src="video6.MP4" type="video/mp4">
+          </video>
+
+          <video class="showcase-video" autoplay muted loop playsinline preload="metadata">
+            <source src="video7.MP4" type="video/mp4">
+          </video>
+
+          <video class="showcase-video" autoplay muted loop playsinline preload="metadata">
+            <source src="video8.MP4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </section>
+
+    <section class="contacts">
+      <h2 class="contacts-title reveal reveal-left">
         Let's talk.
       </h2>
 
-      <ul
-        class="contact-list reveal reveal-right"
-        aria-label="Contatos"
-      >
+      <ul class="contact-list reveal reveal-right">
         <li>
           <a
             class="contact-link"
@@ -761,7 +846,7 @@
             rel="noopener noreferrer"
             aria-label="WhatsApp"
           >
-            <svg viewBox="0 0 24 24" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
               <path d="M20 11.6a8 8 0 0 1-11.8 7L4 20l1.4-4A8 8 0 1 1 20 11.6Z"/>
               <path d="M9 8.5c.5 2.5 2 4 4.5 5l1.5-1 2 1.5c-.5 1.5-1.5 2-3 2-3.5-.5-6-3-6.5-6.5 0-1.5.5-2.5 1.5-3l1.5 2Z"/>
             </svg>
@@ -776,7 +861,7 @@
             rel="noopener noreferrer"
             aria-label="Instagram"
           >
-            <svg viewBox="0 0 24 24" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
               <rect x="3" y="3" width="18" height="18" rx="5"/>
               <circle cx="12" cy="12" r="4"/>
               <circle
@@ -796,7 +881,7 @@
             href="mailto:gabrielapalermoandrade@gmail.com"
             aria-label="E-mail"
           >
-            <svg viewBox="0 0 24 24" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
               <rect x="3" y="5" width="18" height="14" rx="1"/>
               <path d="m4 7 8 6 8-6"/>
             </svg>
