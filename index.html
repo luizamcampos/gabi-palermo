@@ -358,6 +358,10 @@
       line-height: 1.12;
       letter-spacing: -.015em;
       text-transform: none;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-self: stretch;
     }
 
     .build-lines span {
@@ -587,6 +591,10 @@
         grid-template-columns: 1fr;
       }
 
+      .build-lines {
+        gap: .2em;
+      }
+
       .eyes-stage {
         min-height: 170px;
       }
@@ -657,7 +665,7 @@
         preload="auto"
         aria-label="Vídeo de apresentação de Gabi Palermo"
       >
-        <source src="videoprincipal.mp4" type="video/mp4">
+        <source src="videotop.mp4" type="video/mp4">
         Seu navegador não conseguiu reproduzir o vídeo.
       </video>
 
@@ -1047,7 +1055,6 @@
       window.addEventListener("pointermove", (event) => {
         pointerX = event.clientX / window.innerWidth * 2 - 1;
         pointerY = event.clientY / window.innerHeight * 2 - 1;
-
         requestEyesUpdate();
       });
 
