@@ -54,6 +54,8 @@
       text-decoration: none;
     }
 
+    /* ABERTURA */
+
     .home {
       position: relative;
       width: 100%;
@@ -87,6 +89,19 @@
         transparent 72%,
         rgba(0, 0, 0, .22)
       );
+    }
+
+    .video-fallback {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      display: grid;
+      place-items: center;
+      color: var(--white);
+      background: var(--black);
+      font-size: .8rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
     }
 
     /* FAIXA SUPERIOR */
@@ -204,20 +219,7 @@
       outline: 0;
     }
 
-    .video-fallback {
-      position: absolute;
-      inset: 0;
-      z-index: -1;
-      display: grid;
-      place-items: center;
-      color: var(--white);
-      background: var(--black);
-      font-size: .8rem;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-    }
-
-    /* SOBRE: VÍDEO E INTRODUÇÃO */
+    /* SEGUNDA PARTE */
 
     .about-split {
       min-height: 100vh;
@@ -265,7 +267,7 @@
       font-weight: 400;
       line-height: .9;
       letter-spacing: -.025em;
-      text-transform: uppercase;
+      text-transform: none;
     }
 
     .about-intro {
@@ -278,7 +280,7 @@
       margin-top: 1.25em;
     }
 
-    /* ABOUT COMPACTO */
+    /* TERCEIRA PARTE */
 
     .manifesto {
       padding: clamp(70px, 7vw, 105px) clamp(32px, 6vw, 100px);
@@ -292,15 +294,47 @@
       margin: 0 auto;
     }
 
+    .manifesto-top {
+      margin-bottom: clamp(45px, 5vw, 70px);
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(190px, .34fr);
+      gap: clamp(35px, 6vw, 90px);
+      align-items: center;
+    }
+
     .manifesto-lead {
       max-width: 900px;
-      margin-bottom: clamp(45px, 5vw, 70px);
+      margin-bottom: 0;
       font-family: var(--display);
       font-size: clamp(1.9rem, 3.1vw, 3.7rem);
       font-weight: 400;
       line-height: 1;
       letter-spacing: -.02em;
-      text-transform: uppercase;
+      text-transform: none;
+    }
+
+    /* OLHOS INTERATIVOS */
+
+    .eyes-stage {
+      min-height: clamp(210px, 24vw, 330px);
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      cursor: crosshair;
+    }
+
+    .eyes-image {
+      width: min(100%, 290px);
+      height: auto;
+      display: block;
+      object-fit: contain;
+      transform: translate3d(0, 0, 0) rotate(0deg);
+      transform-origin: center;
+      transition: transform .22s cubic-bezier(.2, .7, .2, 1);
+      will-change: transform;
+      user-select: none;
+      -webkit-user-drag: none;
+      pointer-events: none;
     }
 
     .manifesto-grid {
@@ -316,7 +350,7 @@
       font-weight: 400;
       line-height: 1.12;
       letter-spacing: -.015em;
-      text-transform: uppercase;
+      text-transform: none;
     }
 
     .build-lines span {
@@ -343,7 +377,7 @@
       font-weight: 400;
       line-height: 1;
       letter-spacing: -.02em;
-      text-transform: uppercase;
+      text-transform: none;
     }
 
     .manifesto-ending {
@@ -423,7 +457,7 @@
       font-weight: 400;
       line-height: .95;
       letter-spacing: -.02em;
-      text-transform: uppercase;
+      text-transform: none;
     }
 
     .contact-list {
@@ -537,8 +571,21 @@
         padding: 100px 25px;
       }
 
+      .manifesto-top {
+        grid-template-columns: 1fr;
+      }
+
       .manifesto-grid {
         grid-template-columns: 1fr;
+      }
+
+      .eyes-stage {
+        min-height: 240px;
+      }
+
+      .eyes-image {
+        width: min(72vw, 270px);
+        animation: eyes-mobile 4s ease-in-out infinite alternate;
       }
 
       .manifesto-ending {
@@ -562,9 +609,24 @@
       }
     }
 
+    @keyframes eyes-mobile {
+      from {
+        transform: translate3d(-12px, 3px, 0) rotate(-3deg);
+      }
+
+      to {
+        transform: translate3d(12px, -3px, 0) rotate(3deg);
+      }
+    }
+
     @media (prefers-reduced-motion: reduce) {
       .ticker-track {
         animation-play-state: paused;
+      }
+
+      .eyes-image {
+        animation: none;
+        transition: none;
       }
 
       .reveal {
@@ -591,7 +653,9 @@
         Seu navegador não conseguiu reproduzir o vídeo.
       </video>
 
-      <div class="video-fallback">Gabi Palermo</div>
+      <div class="video-fallback">
+        Gabi Palermo
+      </div>
 
       <div
         class="ticker"
@@ -712,9 +776,22 @@
       aria-label="Manifesto de Gabi Palermo"
     >
       <div class="manifesto-inner">
-        <p class="manifesto-lead reveal">
-          Hoje, esses dois olhares se encontram em tudo o que construo.
-        </p>
+        <div class="manifesto-top">
+          <p class="manifesto-lead reveal">
+            Hoje, esses dois olhares se encontram em tudo o que construo.
+          </p>
+
+          <div
+            class="eyes-stage reveal reveal-right"
+            aria-label="Ilustração interativa de olhos"
+          >
+            <img
+              class="eyes-image"
+              src="olhos.PNG"
+              alt="Três olhos pintados"
+            >
+          </div>
+        </div>
 
         <div class="manifesto-grid">
           <p class="build-lines reveal reveal-left">
@@ -926,6 +1003,35 @@
         );
       });
     });
+
+    const eyesStage = document.querySelector(".eyes-stage");
+    const eyesImage = document.querySelector(".eyes-image");
+
+    if (
+      eyesStage &&
+      eyesImage &&
+      window.matchMedia("(pointer: fine)").matches
+    ) {
+      eyesStage.addEventListener("pointermove", (event) => {
+        const bounds = eyesStage.getBoundingClientRect();
+
+        const horizontal =
+          ((event.clientX - bounds.left) / bounds.width - .5) * 2;
+
+        const vertical =
+          ((event.clientY - bounds.top) / bounds.height - .5) * 2;
+
+        eyesImage.style.transform =
+          `translate3d(${horizontal * 28}px, ${vertical * 20}px, 0)
+          rotate(${horizontal * 5}deg)
+          scale(1.035)`;
+      });
+
+      eyesStage.addEventListener("pointerleave", () => {
+        eyesImage.style.transform =
+          "translate3d(0, 0, 0) rotate(0deg) scale(1)";
+      });
+    }
 
     const revealElements = document.querySelectorAll(".reveal");
 
