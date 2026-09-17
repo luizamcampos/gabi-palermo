@@ -14,7 +14,6 @@
     :root {
       --black: #050505;
       --white: #ffffff;
-      --wine: #7B1C1C;
       --bar-height: clamp(58px, 2cm, 76px);
       --font: "DM Sans", Arial, sans-serif;
     }
@@ -45,6 +44,8 @@
       color: inherit;
       text-decoration: none;
     }
+
+    /* ABERTURA */
 
     .home {
       position: relative;
@@ -81,6 +82,8 @@
       );
     }
 
+    /* FAIXA PRETA */
+
     .ticker {
       position: absolute;
       top: 0;
@@ -92,15 +95,29 @@
       align-items: center;
       overflow: hidden;
       color: var(--white);
-      background: var(--black);
+      background: #050505;
       border-bottom: 1px solid rgba(255, 255, 255, .16);
+      isolation: isolate;
+      transform: translateZ(0);
+      -webkit-transform: translateZ(0);
+    }
+
+    .ticker::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background: #050505;
     }
 
     .ticker-track {
+      position: relative;
+      z-index: 1;
       display: flex;
       width: max-content;
       white-space: nowrap;
       animation: ticker-move 20s linear infinite;
+      will-change: transform;
     }
 
     .ticker-group {
@@ -133,6 +150,8 @@
       }
     }
 
+    /* MENU */
+
     .main-nav {
       position: absolute;
       top: var(--bar-height);
@@ -144,6 +163,8 @@
       color: var(--white);
       border-bottom: 1px solid rgba(255, 255, 255, .65);
       background: rgba(0, 0, 0, .08);
+      backdrop-filter: blur(2px);
+      -webkit-backdrop-filter: blur(2px);
     }
 
     .nav-link {
@@ -187,22 +208,22 @@
       text-transform: uppercase;
     }
 
-    /* ABOUT */
+    /* SOBRE */
 
     .about-split {
       min-height: 100vh;
       display: grid;
       grid-template-columns: 1fr 1fr;
       overflow: hidden;
-      color: var(--white);
-      background: var(--wine);
+      color: var(--black);
+      background: var(--white);
     }
 
     .about-media {
       position: relative;
       min-height: 100vh;
       overflow: hidden;
-      background: var(--wine);
+      background: var(--white);
     }
 
     .about-video {
@@ -230,7 +251,7 @@
     .about-title {
       max-width: 700px;
       margin-bottom: clamp(35px, 4vw, 60px);
-      font-size: clamp(3.2rem, 6.2vw, 7.2rem);
+      font-size: clamp(2.6rem, 4.3vw, 5rem);
       font-weight: 500;
       line-height: .86;
       letter-spacing: -.07em;
@@ -265,7 +286,7 @@
     .manifesto-lead {
       max-width: 1250px;
       margin-bottom: clamp(70px, 8vw, 120px);
-      font-size: clamp(2.7rem, 5vw, 6.2rem);
+      font-size: clamp(2.2rem, 3.6vw, 4.3rem);
       font-weight: 500;
       line-height: .92;
       letter-spacing: -.065em;
@@ -280,7 +301,7 @@
     }
 
     .build-lines {
-      font-size: clamp(1.8rem, 3.3vw, 3.8rem);
+      font-size: clamp(1.6rem, 2.2vw, 2.7rem);
       font-weight: 500;
       line-height: 1.04;
       letter-spacing: -.05em;
@@ -306,7 +327,7 @@
       padding: clamp(35px, 4vw, 60px) 0;
       border-top: 1px solid var(--black);
       border-bottom: 1px solid var(--black);
-      font-size: clamp(2.7rem, 5.6vw, 6.7rem);
+      font-size: clamp(2.2rem, 3.8vw, 4.6rem);
       font-weight: 500;
       line-height: .9;
       letter-spacing: -.07em;
@@ -332,7 +353,7 @@
       text-transform: uppercase;
     }
 
-    /* CONTACTS */
+    /* CONTATOS */
 
     .contacts {
       min-height: 42vh;
@@ -346,7 +367,7 @@
     }
 
     .contacts-title {
-      font-size: clamp(2.5rem, 6vw, 7rem);
+      font-size: clamp(2.3rem, 4.5vw, 5.4rem);
       font-weight: 500;
       line-height: .9;
       letter-spacing: -.06em;
@@ -366,7 +387,10 @@
       place-items: center;
       border: 1px solid rgba(255, 255, 255, .75);
       border-radius: 50%;
-      transition: color .25s ease, background .25s ease, transform .25s ease;
+      transition:
+        color .25s ease,
+        background .25s ease,
+        transform .25s ease;
     }
 
     .contact-link:hover,
@@ -408,6 +432,8 @@
       opacity: 1;
       transform: translate(0, 0);
     }
+
+    /* CELULAR */
 
     @media (max-width: 650px) {
       :root {
@@ -486,30 +512,58 @@
 
 <body>
   <main>
-    <section class="home">
-      <video class="hero-video" autoplay muted loop playsinline preload="auto">
+    <section class="home" aria-label="Abertura do portfólio de Gabi Palermo">
+      <video
+        class="hero-video"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="auto"
+        aria-label="Vídeo de apresentação de Gabi Palermo"
+      >
         <source src="videoprincipal.mp4" type="video/mp4">
+        Seu navegador não conseguiu reproduzir o vídeo.
       </video>
 
       <div class="video-fallback">Gabi Palermo</div>
 
-      <div class="ticker">
+      <div
+        class="ticker"
+        aria-label="I don't just create content. I understand brands."
+      >
         <div class="ticker-track">
           <div class="ticker-group">
-            <span class="ticker-text">I don’t just create content. I understand brands.</span>
-            <span class="ticker-text">I don’t just create content. I understand brands.</span>
-            <span class="ticker-text">I don’t just create content. I understand brands.</span>
+            <span class="ticker-text">
+              I don’t just create content. I understand brands.
+            </span>
+
+            <span class="ticker-text">
+              I don’t just create content. I understand brands.
+            </span>
+
+            <span class="ticker-text">
+              I don’t just create content. I understand brands.
+            </span>
           </div>
 
           <div class="ticker-group" aria-hidden="true">
-            <span class="ticker-text">I don’t just create content. I understand brands.</span>
-            <span class="ticker-text">I don’t just create content. I understand brands.</span>
-            <span class="ticker-text">I don’t just create content. I understand brands.</span>
+            <span class="ticker-text">
+              I don’t just create content. I understand brands.
+            </span>
+
+            <span class="ticker-text">
+              I don’t just create content. I understand brands.
+            </span>
+
+            <span class="ticker-text">
+              I don’t just create content. I understand brands.
+            </span>
           </div>
         </div>
       </div>
 
-      <nav class="main-nav">
+      <nav class="main-nav" aria-label="Navegação principal">
         <a class="nav-link" href="#about">
           <span class="nav-number">01</span>
           <span>about</span>
@@ -532,37 +586,75 @@
       </nav>
     </section>
 
-    <section class="about-split" id="about">
+    <section
+      class="about-split"
+      id="about"
+      aria-labelledby="about-title"
+    >
       <div class="about-media reveal reveal-left">
-        <video class="about-video" autoplay muted loop playsinline preload="metadata">
+        <video
+          class="about-video"
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="metadata"
+        >
           <source src="photobooth.mp4" type="video/mp4">
+          Seu navegador não conseguiu reproduzir o vídeo.
         </video>
       </div>
 
       <div class="about-content">
-        <p class="section-number reveal">01 / about</p>
+        <p class="section-number reveal">
+          01 / about
+        </p>
 
-        <h1 class="about-title reveal" style="--delay: .08s;">
+        <h1
+          class="about-title reveal"
+          id="about-title"
+          style="--delay: .08s;"
+        >
           Eu sou feita de intensidade.
         </h1>
 
         <div class="about-intro">
-          <p class="reveal" style="--delay: .16s;">
+          <p
+            class="reveal"
+            style="--delay: .16s;"
+          >
             Nunca soube viver pela metade.
           </p>
 
-          <p class="reveal" style="--delay: .24s;">
-            Gosto do que provoca, do que desloca e do que faz sentir. Talvez por isso minha trajetória sempre tenha acontecido no encontro entre mundos aparentemente diferentes: a sensibilidade e a estratégia, a criação e os negócios, a tradição e a vontade de fazer diferente.
+          <p
+            class="reveal"
+            style="--delay: .24s;"
+          >
+            Gosto do que provoca, do que desloca e do que faz sentir.
+            Talvez por isso minha trajetória sempre tenha acontecido
+            no encontro entre mundos aparentemente diferentes:
+            a sensibilidade e a estratégia, a criação e os negócios,
+            a tradição e a vontade de fazer diferente.
           </p>
 
-          <p class="reveal" style="--delay: .32s;">
-            Me formei em Fashion Design, em Milão, porque sempre enxerguei a moda como uma forma de linguagem. Depois, escolhi estudar Administração, no Brasil, para entender como uma ideia deixa de ser apenas bonita e ganha estrutura para existir, crescer e permanecer.
+          <p
+            class="reveal"
+            style="--delay: .32s;"
+          >
+            Me formei em Fashion Design, em Milão, porque sempre
+            enxerguei a moda como uma forma de linguagem. Depois,
+            escolhi estudar Administração, no Brasil, para entender
+            como uma ideia deixa de ser apenas bonita e ganha estrutura
+            para existir, crescer e permanecer.
           </p>
         </div>
       </div>
     </section>
 
-    <section class="manifesto">
+    <section
+      class="manifesto"
+      aria-label="Manifesto de Gabi Palermo"
+    >
       <div class="manifesto-inner">
         <p class="manifesto-lead reveal">
           Hoje, esses dois olhares se encontram em tudo o que construo.
@@ -577,15 +669,31 @@
           </p>
 
           <div class="manifesto-copy">
-            <p class="reveal" style="--delay: .08s;">
-              Sou fundadora e diretora criativa da Palermo, uma marca que transforma memória, identidade e ancestralidade em algo que pode ser vestido.
+            <p
+              class="reveal"
+              style="--delay: .08s;"
+            >
+              Sou fundadora e diretora criativa da Palermo, uma marca
+              que transforma memória, identidade e ancestralidade em
+              algo que pode ser vestido.
             </p>
 
-            <p class="reveal" style="--delay: .16s;">
-              Também sou Head de Marketing na New Dog e faço parte da geração que dará continuidade a uma história iniciada muito antes de mim. Cresci cercada por uma empresa familiar que atravessou décadas e transformações. Agora, tenho o privilégio — e a responsabilidade — de imaginar como esse legado continuará vivo no futuro.
+            <p
+              class="reveal"
+              style="--delay: .16s;"
+            >
+              Também sou Head de Marketing na New Dog e faço parte da
+              geração que dará continuidade a uma história iniciada
+              muito antes de mim. Cresci cercada por uma empresa familiar
+              que atravessou décadas e transformações. Agora, tenho o
+              privilégio — e a responsabilidade — de imaginar como esse
+              legado continuará vivo no futuro.
             </p>
 
-            <p class="reveal" style="--delay: .24s;">
+            <p
+              class="reveal"
+              style="--delay: .24s;"
+            >
               Talvez seja isso que mais me defina: eu gosto de construir.
             </p>
           </div>
@@ -598,15 +706,26 @@
 
         <div class="manifesto-ending">
           <p class="reveal">
-            Quero compartilhar aquilo que me atravessa: lugares, pessoas, roupas, viagens, movimentos, ideias, encontros e pequenas coisas que talvez passassem despercebidas.
+            Quero compartilhar aquilo que me atravessa: lugares,
+            pessoas, roupas, viagens, movimentos, ideias, encontros
+            e pequenas coisas que talvez passassem despercebidas.
           </p>
 
-          <p class="reveal" style="--delay: .1s; margin-top: 1.4em;">
-            Quando uma marca entra no meu universo, ela precisa fazer parte da história — e não interrompê-la.
+          <p
+            class="reveal"
+            style="--delay: .1s; margin-top: 1.4em;"
+          >
+            Quando uma marca entra no meu universo, ela precisa fazer
+            parte da história — e não interrompê-la.
           </p>
 
-          <p class="reveal" style="--delay: .2s; margin-top: 1.4em;">
-            Acredito em parcerias que tenham conversa, identidade e intenção. Porque não quero apenas mostrar o que existe. Quero encontrar novas formas de fazer as pessoas enxergarem.
+          <p
+            class="reveal"
+            style="--delay: .2s; margin-top: 1.4em;"
+          >
+            Acredito em parcerias que tenham conversa, identidade e
+            intenção. Porque não quero apenas mostrar o que existe.
+            Quero encontrar novas formas de fazer as pessoas enxergarem.
           </p>
         </div>
 
@@ -619,13 +738,30 @@
       </div>
     </section>
 
-    <section class="contacts">
-      <h2 class="contacts-title reveal reveal-left">Let's talk.</h2>
+    <section
+      class="contacts"
+      aria-labelledby="contacts-title"
+    >
+      <h2
+        class="contacts-title reveal reveal-left"
+        id="contacts-title"
+      >
+        Let's talk.
+      </h2>
 
-      <ul class="contact-list reveal reveal-right">
+      <ul
+        class="contact-list reveal reveal-right"
+        aria-label="Contatos"
+      >
         <li>
-          <a class="contact-link" href="https://wa.me/5511984842027" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
-            <svg viewBox="0 0 24 24">
+          <a
+            class="contact-link"
+            href="https://wa.me/5511984842027"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="WhatsApp"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="M20 11.6a8 8 0 0 1-11.8 7L4 20l1.4-4A8 8 0 1 1 20 11.6Z"/>
               <path d="M9 8.5c.5 2.5 2 4 4.5 5l1.5-1 2 1.5c-.5 1.5-1.5 2-3 2-3.5-.5-6-3-6.5-6.5 0-1.5.5-2.5 1.5-3l1.5 2Z"/>
             </svg>
@@ -633,18 +769,34 @@
         </li>
 
         <li>
-          <a class="contact-link" href="https://www.instagram.com/gabipalermoo/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-            <svg viewBox="0 0 24 24">
+          <a
+            class="contact-link"
+            href="https://www.instagram.com/gabipalermoo/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
               <rect x="3" y="3" width="18" height="18" rx="5"/>
               <circle cx="12" cy="12" r="4"/>
-              <circle cx="17.4" cy="6.7" r=".8" fill="currentColor" stroke="none"/>
+              <circle
+                cx="17.4"
+                cy="6.7"
+                r=".8"
+                fill="currentColor"
+                stroke="none"
+              />
             </svg>
           </a>
         </li>
 
         <li>
-          <a class="contact-link" href="mailto:gabrielapalermoandrade@gmail.com" aria-label="E-mail">
-            <svg viewBox="0 0 24 24">
+          <a
+            class="contact-link"
+            href="mailto:gabrielapalermoandrade@gmail.com"
+            aria-label="E-mail"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
               <rect x="3" y="5" width="18" height="14" rx="1"/>
               <path d="m4 7 8 6 8-6"/>
             </svg>
