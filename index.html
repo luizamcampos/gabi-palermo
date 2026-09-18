@@ -29,7 +29,7 @@
 
     @font-face {
       font-family: "Coalhand Luke";
-      src: url("CoalhandLuke_TRIAL.otf") format("opentype");
+      src: url("CoalhandLuke%20TRIAL.otf") format("opentype");
       font-weight: 400;
       font-style: normal;
       font-display: swap;
@@ -55,6 +55,7 @@
     body {
       width: 100%;
       min-width: 320px;
+      background: var(--black);
       font-family: var(--font);
     }
 
@@ -157,7 +158,7 @@
       display: inline-flex;
       align-items: center;
       font-family: var(--display);
-      font-size: clamp(1.25rem, 2vw, 1.8rem);
+      font-size: clamp(1.05rem, 1.7vw, 1.55rem);
       font-weight: 400;
       letter-spacing: .01em;
     }
@@ -188,7 +189,9 @@
       grid-template-columns: repeat(4, 1fr);
       color: var(--white);
       border-bottom: 1px solid rgba(255, 255, 255, .65);
-      background: transparent;
+      background: rgba(0, 0, 0, .08);
+      backdrop-filter: blur(2px);
+      -webkit-backdrop-filter: blur(2px);
     }
 
     .nav-link {
@@ -278,12 +281,23 @@
       max-width: 700px;
       margin-bottom: clamp(35px, 4vw, 60px);
       font-family: var(--display);
-      font-size: clamp(3rem, 5vw, 6rem);
+      font-size: clamp(2.6rem, 4.3vw, 5rem);
       font-weight: 400;
       line-height: .9;
       letter-spacing: -.025em;
       text-transform: none;
       rotate: -1deg;
+    }
+
+    .write-heading {
+      opacity: 1 !important;
+      transform: none !important;
+      clip-path: inset(0 100% 0 0);
+      will-change: clip-path;
+    }
+
+    .write-heading.is-visible {
+      animation: invisible-pen 1.8s cubic-bezier(.22, .7, .2, 1) forwards;
     }
 
     .about-intro {
@@ -297,14 +311,14 @@
     }
 
     .manifesto {
-      padding: clamp(70px, 7vw, 105px) clamp(32px, 6vw, 100px);
+      padding: clamp(75px, 9vw, 140px) clamp(32px, 6vw, 100px);
       color: var(--black);
       background-color: var(--paper-color);
       background-image: var(--paper-texture);
       background-repeat: repeat;
       background-position: top left;
       background-size: auto;
-      border-top: 1px solid rgba(5, 5, 5, .18);
+      border-top: 1px solid #d8d8d8;
     }
 
     .manifesto-inner {
@@ -312,118 +326,45 @@
       margin: 0 auto;
     }
 
-    .manifesto-top {
-      margin-bottom: clamp(45px, 5vw, 70px);
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(190px, .34fr);
-      gap: clamp(35px, 6vw, 90px);
-      align-items: center;
-    }
-
-    .manifesto-lead {
-      max-width: 900px;
-      margin-bottom: 0;
-      font-family: var(--display);
-      font-size: clamp(2.3rem, 4vw, 4.6rem);
-      font-weight: 400;
-      line-height: .95;
-      letter-spacing: -.02em;
-      text-transform: none;
-      rotate: .45deg;
-    }
-
-    .eyes-stage {
-      min-height: clamp(140px, 15vw, 190px);
-      display: grid;
-      place-items: center;
-      overflow: hidden;
-    }
-
-    .eyes-image {
-      width: min(100%, 155px);
-      height: auto;
-      display: block;
-      object-fit: contain;
-      transform: translate3d(0, 0, 0) rotate(0deg);
-      transform-origin: center;
-      transition: transform .22s cubic-bezier(.2, .7, .2, 1);
-      will-change: transform;
-      user-select: none;
-      -webkit-user-drag: none;
-      pointer-events: none;
-    }
-
-    .manifesto-grid {
-      display: grid;
-      grid-template-columns: minmax(230px, .7fr) minmax(420px, 1.3fr);
-      gap: clamp(45px, 7vw, 90px);
-      align-items: start;
-    }
-
-    .build-lines {
-      font-family: var(--font);
-      font-size: clamp(1.25rem, 1.8vw, 2.1rem);
-      font-weight: 400;
-      line-height: 1.12;
-      letter-spacing: -.015em;
-      text-transform: none;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      align-self: stretch;
-    }
-
-    .build-lines span {
-      display: block;
-    }
-
-    .manifesto-copy {
-      max-width: 760px;
-      font-size: clamp(.96rem, 1.05vw, 1.08rem);
-      line-height: 1.6;
-    }
-
-    .manifesto-copy p + p {
-      margin-top: 1.35em;
-    }
-
-    .point-of-view {
-      margin: clamp(55px, 6vw, 80px) 0 clamp(45px, 5vw, 65px);
-      padding: clamp(25px, 3vw, 40px) 0;
-      border-top: 1px solid var(--black);
-      border-bottom: 1px solid var(--black);
-      font-family: var(--display);
-      font-size: clamp(2.3rem, 4vw, 4.6rem);
-      font-weight: 400;
-      line-height: .95;
-      letter-spacing: -.02em;
-      text-transform: none;
-      rotate: -.35deg;
-    }
-
-    .manifesto-ending {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: clamp(25px, 4vw, 55px);
-      font-size: clamp(.95rem, 1.05vw, 1.08rem);
-      line-height: 1.55;
-      letter-spacing: 0;
-    }
-
-    .manifesto-ending p {
-      margin-top: 0 !important;
-    }
-
     .manifesto-values {
-      margin-top: clamp(45px, 5vw, 75px);
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
-      gap: 25px;
+      align-items: center;
+      gap: clamp(35px, 6vw, 85px);
       font-family: var(--display);
-      font-size: clamp(1.5rem, 2.2vw, 2.3rem);
+      font-size: clamp(2rem, 3.5vw, 4rem);
       letter-spacing: 0;
       text-transform: none;
+      opacity: 1 !important;
+      transform: none !important;
+    }
+
+    .manifesto-values span {
+      opacity: 0;
+      display: inline-block;
+      clip-path: inset(0 100% 0 0);
+      will-change: clip-path;
+    }
+
+    .manifesto-values.is-visible span {
+      animation: invisible-pen 1.25s cubic-bezier(.22, .7, .2, 1) forwards;
+    }
+
+    .manifesto-values.is-visible span:nth-child(1) {
+      animation-delay: .05s;
+    }
+
+    .manifesto-values.is-visible span:nth-child(2) {
+      animation-delay: .35s;
+    }
+
+    .manifesto-values.is-visible span:nth-child(3) {
+      animation-delay: .65s;
+    }
+
+    .manifesto-values.is-visible span:nth-child(4) {
+      animation-delay: .95s;
     }
 
     .manifesto-values span:nth-child(1) {
@@ -442,40 +383,15 @@
       rotate: 2deg;
     }
 
-    .video-showcase {
-      width: 100%;
-      overflow: hidden;
-      background: transparent;
-    }
-
-    .video-track {
-      display: flex;
-      width: max-content;
-      animation: video-scroll 32s linear infinite;
-      will-change: transform;
-    }
-
-    .video-group {
-      display: flex;
-      flex-shrink: 0;
-    }
-
-    .showcase-video {
-      width: clamp(210px, 19vw, 300px);
-      height: clamp(360px, 34vw, 520px);
-      display: block;
-      flex: 0 0 auto;
-      object-fit: cover;
-      background: transparent;
-    }
-
-    @keyframes video-scroll {
-      from {
-        transform: translateX(0);
+    @keyframes invisible-pen {
+      0% {
+        opacity: 1;
+        clip-path: inset(0 100% 0 0);
       }
 
-      to {
-        transform: translateX(-50%);
+      100% {
+        opacity: 1;
+        clip-path: inset(0 0 0 0);
       }
     }
 
@@ -492,9 +408,9 @@
 
     .contacts-title {
       font-family: var(--display);
-      font-size: clamp(3rem, 5.5vw, 6.5rem);
+      font-size: clamp(2.3rem, 4.5vw, 5.4rem);
       font-weight: 400;
-      line-height: .9;
+      line-height: .95;
       letter-spacing: -.02em;
       text-transform: none;
       rotate: -1.5deg;
@@ -600,42 +516,14 @@
         padding: 90px 25px;
       }
 
-      .about-title {
-        font-size: clamp(3rem, 15vw, 5rem);
-      }
-
       .manifesto {
         padding: 100px 25px;
       }
 
-      .manifesto-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .manifesto-top {
-        grid-template-columns: 1fr;
-      }
-
-      .eyes-stage {
-        min-height: 170px;
-      }
-
-      .eyes-image {
-        width: min(42vw, 145px);
-        animation: eyes-mobile 4s ease-in-out infinite alternate;
-      }
-
-      .manifesto-ending {
-        grid-template-columns: 1fr;
-      }
-
-      .showcase-video {
-        width: 58vw;
-        height: 88vw;
-      }
-
-      .video-track {
-        animation-duration: 28s;
+      .manifesto-values {
+        align-items: flex-start;
+        flex-direction: column;
+        font-size: clamp(2.6rem, 13vw, 4.5rem);
       }
 
       .contacts {
@@ -646,24 +534,16 @@
       }
     }
 
-    @keyframes eyes-mobile {
-      from {
-        transform: translate3d(-12px, 3px, 0) rotate(-3deg);
-      }
-
-      to {
-        transform: translate3d(12px, -3px, 0) rotate(3deg);
-      }
-    }
-
     @media (prefers-reduced-motion: reduce) {
       .ticker-track {
         animation-play-state: paused;
       }
 
-      .eyes-image {
-        animation: none;
-        transition: none;
+      .write-heading,
+      .manifesto-values span {
+        opacity: 1;
+        clip-path: none;
+        animation: none !important;
       }
 
       .reveal {
@@ -734,7 +614,7 @@
       <div class="about-content">
         <p class="section-number reveal">01 / ABOUT</p>
 
-        <h1 class="about-title reveal" id="about-title" style="--delay: .08s;">
+        <h1 class="about-title reveal write-heading" id="about-title" style="--delay: .08s;">
           Eu sou feita de intensidade.
         </h1>
 
@@ -763,56 +643,8 @@
       </div>
     </section>
 
-    <section class="manifesto" aria-label="Manifesto de Gabi Palermo">
+    <section class="manifesto" aria-label="Valores de Gabi Palermo">
       <div class="manifesto-inner">
-        <div class="manifesto-top">
-          <p class="manifesto-lead reveal">
-            Hoje, esses dois olhares se encontram em tudo o que construo.
-          </p>
-
-          <div class="eyes-stage reveal reveal-right" aria-label="Ilustração interativa de olhos">
-            <img class="eyes-image" src="olhos.PNG" alt="Três olhos pintados">
-          </div>
-        </div>
-
-        <div class="manifesto-grid">
-          <p class="build-lines reveal reveal-left">
-            <span>Construir marcas.</span>
-            <span>Construir imagens.</span>
-            <span>Construir histórias.</span>
-            <span>Construir significado.</span>
-          </p>
-
-          <div class="manifesto-copy">
-            <p class="reveal" style="--delay: .08s;">
-              Sou fundadora e diretora criativa da Palermo, uma marca que transforma memória, identidade e ancestralidade em algo que pode ser vestido. Também sou Head de Marketing do New Dog, unindo criação, estratégia e negócios.
-            </p>
-
-            <p class="reveal" style="--delay: .16s;">
-              Entre o legado que recebi e aquilo que ainda quero construir, encontro novas formas de manter histórias vivas, relevantes e profundamente verdadeiras.
-            </p>
-          </div>
-        </div>
-
-        <p class="point-of-view reveal">
-          Meu feed não é uma vitrine.<br>
-          É um ponto de vista.
-        </p>
-
-        <div class="manifesto-ending">
-          <p class="reveal">
-            Quero compartilhar aquilo que me atravessa: lugares, pessoas, roupas, viagens, ideias e encontros.
-          </p>
-
-          <p class="reveal" style="--delay: .1s;">
-            Quando uma marca entra no meu universo, ela precisa fazer parte da história — e não interrompê-la.
-          </p>
-
-          <p class="reveal" style="--delay: .2s;">
-            Acredito em parcerias com conversa, identidade e intenção. Não quero apenas mostrar. Quero criar novas formas de enxergar.
-          </p>
-        </div>
-
         <div class="manifesto-values reveal">
           <span>Intensidade</span>
           <span>Coragem</span>
@@ -822,34 +654,8 @@
       </div>
     </section>
 
-    <section class="video-showcase" aria-label="Vídeos de Gabi Palermo">
-      <div class="video-track">
-        <div class="video-group">
-          <video class="showcase-video" autoplay muted loop playsinline preload="metadata"><source src="video1.MP4" type="video/mp4"></video>
-          <video class="showcase-video" autoplay muted loop playsinline preload="metadata"><source src="video2.MP4" type="video/mp4"></video>
-          <video class="showcase-video" autoplay muted loop playsinline preload="metadata"><source src="video3.MP4" type="video/mp4"></video>
-          <video class="showcase-video" autoplay muted loop playsinline preload="metadata"><source src="video4.MP4" type="video/mp4"></video>
-          <video class="showcase-video" autoplay muted loop playsinline preload="metadata"><source src="video5.MP4" type="video/mp4"></video>
-          <video class="showcase-video" autoplay muted loop playsinline preload="metadata"><source src="video6.MP4" type="video/mp4"></video>
-          <video class="showcase-video" autoplay muted loop playsinline preload="metadata"><source src="video7.MP4" type="video/mp4"></video>
-          <video class="showcase-video" autoplay muted loop playsinline preload="metadata"><source src="video8.MP4" type="video/mp4"></video>
-        </div>
-
-        <div class="video-group" aria-hidden="true">
-          <video class="showcase-video" autoplay muted loop playsinline preload="metadata"><source src="video1.MP4" type="video/mp4"></video>
-          <video class="showcase-video" autoplay muted loop playsinline preload="metadata"><source src="video2.MP4" type="video/mp4"></video>
-          <video class="showcase-video" autoplay muted loop playsinline preload="metadata"><source src="video3.MP4" type="video/mp4"></video>
-          <video class="showcase-video" autoplay muted loop playsinline preload="metadata"><source src="video4.MP4" type="video/mp4"></video>
-          <video class="showcase-video" autoplay muted loop playsinline preload="metadata"><source src="video5.MP4" type="video/mp4"></video>
-          <video class="showcase-video" autoplay muted loop playsinline preload="metadata"><source src="video6.MP4" type="video/mp4"></video>
-          <video class="showcase-video" autoplay muted loop playsinline preload="metadata"><source src="video7.MP4" type="video/mp4"></video>
-          <video class="showcase-video" autoplay muted loop playsinline preload="metadata"><source src="video8.MP4" type="video/mp4"></video>
-        </div>
-      </div>
-    </section>
-
     <section class="contacts" aria-labelledby="contacts-title">
-      <h2 class="contacts-title reveal reveal-left" id="contacts-title">
+      <h2 class="contacts-title reveal write-heading" id="contacts-title">
         Let's talk.
       </h2>
 
@@ -895,40 +701,6 @@
         });
       });
     });
-
-    const eyesStage = document.querySelector(".eyes-stage");
-    const eyesImage = document.querySelector(".eyes-image");
-
-    if (eyesStage && eyesImage && window.matchMedia("(pointer: fine)").matches) {
-      let pointerX = 0;
-      let pointerY = 0;
-      let scrollMovement = 0;
-      let animationFrame;
-
-      const moveEyes = () => {
-        eyesImage.style.transform = `translate3d(${pointerX * 18}px, ${pointerY * 13 + scrollMovement}px, 0) rotate(${pointerX * 4}deg) scale(1.025)`;
-        animationFrame = null;
-      };
-
-      const requestEyesUpdate = () => {
-        if (!animationFrame) {
-          animationFrame = requestAnimationFrame(moveEyes);
-        }
-      };
-
-      window.addEventListener("pointermove", (event) => {
-        pointerX = event.clientX / window.innerWidth * 2 - 1;
-        pointerY = event.clientY / window.innerHeight * 2 - 1;
-        requestEyesUpdate();
-      });
-
-      window.addEventListener("scroll", () => {
-        scrollMovement = Math.sin(window.scrollY / 95) * 9;
-        requestEyesUpdate();
-      }, {
-        passive: true
-      });
-    }
 
     const revealElements = document.querySelectorAll(".reveal");
 
