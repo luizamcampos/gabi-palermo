@@ -14,14 +14,18 @@
   font-family:Hand;
   src:url("CoalhandLuke%20TRIAL.otf") format("opentype");
 }
+
 *{box-sizing:border-box;margin:0;padding:0}
+
 html{scroll-behavior:smooth}
+
 body{
   overflow-x:hidden;
   color:#111;
   font-family:Typewriter,serif;
   background:#f4f2ec url("0D7DD486-A855-4A89-846C-6E6ECA6C75E3_1_201_a.jpeg") repeat;
 }
+
 a{color:inherit;text-decoration:none}
 
 .home{
@@ -32,6 +36,7 @@ a{color:inherit;text-decoration:none}
   color:white;
   background:#000;
 }
+
 .hero-video{
   position:absolute;
   inset:0;
@@ -39,6 +44,7 @@ a{color:inherit;text-decoration:none}
   height:100%;
   object-fit:cover;
 }
+
 .ticker{
   position:absolute;
   top:0;
@@ -48,35 +54,41 @@ a{color:inherit;text-decoration:none}
   display:flex;
   align-items:center;
   overflow:hidden;
-  z-index:3;
+  z-index:4;
   background:transparent;
 }
+
 .ticker-track{
   display:flex;
   width:max-content;
   white-space:nowrap;
   animation:move 22s linear infinite;
 }
+
 .ticker-group{display:flex}
+
 .ticker span{
-  font:1.5rem Hand,serif;
   margin-right:65px;
+  font:1.5rem Hand,serif;
 }
+
 @keyframes move{
   from{transform:translateX(0)}
   to{transform:translateX(-50%)}
 }
+
 .nav{
   position:absolute;
   top:70px;
   left:0;
   width:100%;
-  z-index:3;
+  z-index:4;
   display:grid;
   grid-template-columns:repeat(4,1fr);
   border-top:1px solid #ffffff88;
   border-bottom:1px solid #ffffff88;
 }
+
 .nav a{
   padding:20px 30px;
   color:white;
@@ -84,93 +96,124 @@ a{color:inherit;text-decoration:none}
   font-size:1rem;
   transition:.3s;
 }
-.nav a:hover{background:white;color:#111}
+
+.nav a:hover{
+  color:#111;
+  background:white;
+}
 
 .about{
   min-height:100vh;
   display:grid;
   grid-template-columns:1fr 1fr;
 }
+
 .about-video{
   width:100%;
   height:100%;
   min-height:100vh;
   object-fit:cover;
 }
+
 .about-content{
   position:relative;
   min-height:100vh;
-  overflow:hidden;
+  overflow:visible;
   padding:90px clamp(35px,6vw,100px);
 }
+
 .number{
+  position:relative;
+  z-index:5;
   margin-bottom:55px;
   font-size:.8rem;
   letter-spacing:.15em;
 }
+
 .title{
   position:relative;
-  z-index:2;
-  max-width:650px;
+  z-index:5;
+  width:fit-content;
+  max-width:none;
   margin-bottom:40px;
+  padding:.15em .5em .25em .05em;
   color:#111;
-  font:clamp(3rem,5vw,5.5rem)/.95 Hand,serif;
+  font:clamp(2.8rem,4.8vw,5.5rem)/.95 Hand,serif;
   transform:rotate(-2deg);
   transform-origin:left center;
+  white-space:normal;
+  overflow:visible;
   animation:write 1.8s ease both;
 }
+
 @keyframes write{
   from{clip-path:inset(0 100% 0 0)}
   to{clip-path:inset(0 0 0 0)}
 }
+
 .text{
   position:relative;
-  z-index:2;
+  z-index:5;
   max-width:700px;
   font-size:clamp(.95rem,1.15vw,1.15rem);
   line-height:1.65;
 }
+
 .text p{margin-bottom:1.3em}
 
 .doodles{
   position:absolute;
   inset:0;
+  z-index:10;
   pointer-events:none;
 }
+
 .doodle{
   position:absolute;
-  width:75px;
+  z-index:11;
   animation:swing 5s ease-in-out infinite;
 }
-.doodle img{width:100%;display:block}
+
+.doodle img{
+  display:block;
+  width:100%;
+}
+
 .lampada{
   top:4%;
   right:3%;
   width:145px;
   transform:rotate(5deg);
 }
+
 .tintas{
   top:25%;
   left:-2%;
+  width:80px;
   transform:rotate(-5deg);
 }
+
 .italia{
-  top:46%;
+  top:59%;
   right:2%;
   width:110px;
   transform:rotate(4deg);
 }
+
 .moda{
-  top:67%;
+  top:69%;
   left:-1%;
+  width:80px;
   transform:rotate(-4deg);
 }
+
 .cavalo{
   top:84%;
   right:3%;
   width:145px;
   transform:rotate(5deg);
 }
+
 @keyframes swing{
   0%,100%{translate:0 0;rotate:-3deg}
   50%{translate:0 7px;rotate:3deg}
@@ -179,6 +222,7 @@ a{color:inherit;text-decoration:none}
 .manifesto{
   padding:55px clamp(30px,6vw,100px) 35px;
 }
+
 .values{
   display:flex;
   justify-content:space-between;
@@ -186,6 +230,7 @@ a{color:inherit;text-decoration:none}
   gap:25px;
   font:clamp(2rem,3.7vw,4rem) Hand,serif;
 }
+
 .values span:nth-child(1){transform:rotate(-2deg)}
 .values span:nth-child(2){transform:rotate(2deg)}
 .values span:nth-child(3){transform:rotate(-1deg)}
@@ -198,20 +243,28 @@ a{color:inherit;text-decoration:none}
   gap:40px;
   padding:20px clamp(30px,6vw,100px) 45px;
 }
+
 .eyes{
   width:95px;
   animation:float 5s ease-in-out infinite;
 }
-.eyes img{width:100%;display:block}
+
+.eyes img{
+  display:block;
+  width:100%;
+}
+
 @keyframes float{
   0%,100%{transform:rotate(-2deg) translateY(0)}
   50%{transform:rotate(2deg) translateY(-8px)}
 }
+
 .contact-list{
   display:flex;
   gap:20px;
   list-style:none;
 }
+
 .contact{
   width:76px;
   height:76px;
@@ -221,11 +274,13 @@ a{color:inherit;text-decoration:none}
   border-radius:50%;
   transition:.3s;
 }
+
 .contact:hover{
   color:white;
   background:#111;
   transform:translateY(-6px);
 }
+
 .contact svg{
   width:25px;
   height:25px;
@@ -241,6 +296,7 @@ a{color:inherit;text-decoration:none}
   border-top:1px solid #111;
   font:1.25rem Hand,serif;
 }
+
 .top{
   border:0;
   background:none;
@@ -251,29 +307,50 @@ a{color:inherit;text-decoration:none}
 
 @media(max-width:700px){
   .ticker{height:58px}
+
   .nav{
     top:58px;
     grid-template-columns:repeat(2,1fr);
   }
-  .nav a{padding:14px;font-size:.8rem}
+
+  .nav a{
+    padding:14px;
+    font-size:.8rem;
+  }
+
   .about{display:block}
+
   .about-video{min-height:65vh}
-  .about-content{min-height:auto;padding:75px 28px}
-  .title{font-size:clamp(2.8rem,14vw,4.5rem)}
-  .doodle{width:50px}
-  .lampada,.cavalo{width:75px}
-  .italia{width:60px}
+
+  .about-content{
+    min-height:auto;
+    padding:75px 28px;
+  }
+
+  .title{
+    width:100%;
+    max-width:100%;
+    padding-right:.4em;
+    font-size:clamp(2.8rem,14vw,4.5rem);
+  }
+
+  .doodle{width:52px}
+  .lampada,.cavalo{width:78px}
+  .italia{width:62px}
+
   .values{
     flex-direction:column;
     align-items:flex-start;
-    font-size:clamp(2.5rem,13vw,4.5rem);
     gap:12px;
+    font-size:clamp(2.5rem,13vw,4.5rem);
   }
+
   .contacts{
     flex-direction:column;
     gap:28px;
     padding-top:20px;
   }
+
   .footer{
     flex-direction:column;
     gap:12px;
@@ -299,6 +376,7 @@ a{color:inherit;text-decoration:none}
         <span>I don’t just create content. I understand brands.</span>
         <span>I don’t just create content. I understand brands.</span>
       </div>
+
       <div class="ticker-group">
         <span>I don’t just create content. I understand brands.</span>
         <span>I don’t just create content. I understand brands.</span>
@@ -326,11 +404,25 @@ a{color:inherit;text-decoration:none}
   <div class="about-content">
 
     <div class="doodles">
-      <span class="doodle lampada"><img src="lampada.PNG" alt=""></span>
-      <span class="doodle tintas"><img src="tintas.PNG" alt=""></span>
-      <span class="doodle italia"><img src="italia.PNG" alt=""></span>
-      <span class="doodle moda"><img src="moda.PNG" alt=""></span>
-      <span class="doodle cavalo"><img src="cavalo.PNG" alt=""></span>
+      <span class="doodle lampada">
+        <img src="lampada.PNG" alt="">
+      </span>
+
+      <span class="doodle tintas">
+        <img src="tintas.PNG" alt="">
+      </span>
+
+      <span class="doodle italia">
+        <img src="italia.PNG" alt="">
+      </span>
+
+      <span class="doodle moda">
+        <img src="moda.PNG" alt="">
+      </span>
+
+      <span class="doodle cavalo">
+        <img src="cavalo.PNG" alt="">
+      </span>
     </div>
 
     <div class="number">01 / ABOUT</div>
@@ -363,11 +455,13 @@ a{color:inherit;text-decoration:none}
 </section>
 
 <section class="contacts">
+
   <div class="eyes">
     <img src="olhos.PNG" alt="Ilustração de olhos">
   </div>
 
   <ul class="contact-list">
+
     <li>
       <a class="contact" href="https://wa.me/5511984842027" target="_blank" aria-label="WhatsApp">
         <svg viewBox="0 0 24 24">
@@ -394,6 +488,7 @@ a{color:inherit;text-decoration:none}
         </svg>
       </a>
     </li>
+
   </ul>
 </section>
 
@@ -410,7 +505,10 @@ document.querySelectorAll("video").forEach(video=>{
 });
 
 document.querySelector(".top").addEventListener("click",()=>{
-  window.scrollTo({top:0,behavior:"smooth"});
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
 });
 </script>
 
