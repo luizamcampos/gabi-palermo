@@ -6,26 +6,17 @@
 <title>Gabi Palermo</title>
 
 <style>
-@font-face{
-  font-family:Typewriter;
-  src:url("JMH%20Typewriter.otf") format("opentype");
-}
-@font-face{
-  font-family:Hand;
-  src:url("CoalhandLuke%20TRIAL.otf") format("opentype");
-}
+@font-face{font-family:Typewriter;src:url("JMH%20Typewriter.otf") format("opentype")}
+@font-face{font-family:Hand;src:url("CoalhandLuke%20TRIAL.otf") format("opentype")}
 
 *{box-sizing:border-box;margin:0;padding:0}
-
 html{scroll-behavior:smooth}
-
 body{
   overflow-x:hidden;
   color:#111;
   font-family:Typewriter,serif;
   background:#f4f2ec url("0D7DD486-A855-4A89-846C-6E6ECA6C75E3_1_201_a.jpeg") repeat;
 }
-
 a{color:inherit;text-decoration:none}
 
 .home{
@@ -33,10 +24,9 @@ a{color:inherit;text-decoration:none}
   height:100vh;
   min-height:560px;
   overflow:hidden;
-  color:white;
+  color:#fff;
   background:#000;
 }
-
 .hero-video{
   position:absolute;
   inset:0;
@@ -44,35 +34,29 @@ a{color:inherit;text-decoration:none}
   height:100%;
   object-fit:cover;
 }
-
 .ticker{
   position:absolute;
   top:0;
   left:0;
+  z-index:4;
   width:100%;
   height:70px;
   display:flex;
   align-items:center;
   overflow:hidden;
-  z-index:4;
-  background:transparent;
 }
-
 .ticker-track{
   display:flex;
   width:max-content;
   white-space:nowrap;
-  animation:move 22s linear infinite;
+  animation:ticker 22s linear infinite;
 }
-
 .ticker-group{display:flex}
-
 .ticker span{
   margin-right:65px;
   font:1.5rem Hand,serif;
 }
-
-@keyframes move{
+@keyframes ticker{
   from{transform:translateX(0)}
   to{transform:translateX(-50%)}
 }
@@ -81,47 +65,39 @@ a{color:inherit;text-decoration:none}
   position:absolute;
   top:70px;
   left:0;
-  width:100%;
   z-index:4;
+  width:100%;
   display:grid;
   grid-template-columns:repeat(4,1fr);
   border-top:1px solid #ffffff88;
   border-bottom:1px solid #ffffff88;
 }
-
 .nav a{
   padding:20px 30px;
-  color:white;
+  color:#fff;
   border-right:1px solid #ffffff88;
   font-size:1rem;
   transition:.3s;
 }
-
-.nav a:hover{
-  color:#111;
-  background:white;
-}
+.nav a:hover{color:#111;background:#fff}
 
 .about{
   min-height:100vh;
   display:grid;
   grid-template-columns:1fr 1fr;
 }
-
 .about-video{
   width:100%;
   height:100%;
   min-height:100vh;
   object-fit:cover;
 }
-
 .about-content{
   position:relative;
   min-height:100vh;
   overflow:visible;
   padding:90px clamp(35px,6vw,100px);
 }
-
 .number{
   position:relative;
   z-index:5;
@@ -129,23 +105,19 @@ a{color:inherit;text-decoration:none}
   font-size:.8rem;
   letter-spacing:.15em;
 }
-
 .title{
   position:relative;
   z-index:5;
   width:fit-content;
-  max-width:none;
+  max-width:100%;
   margin-bottom:40px;
   padding:.15em .5em .25em .05em;
-  color:#111;
   font:clamp(2.8rem,4.8vw,5.5rem)/.95 Hand,serif;
   transform:rotate(-2deg);
   transform-origin:left center;
-  white-space:normal;
   overflow:visible;
-  animation:write 1.8s ease both;
+  animation:write 1.8s steps(35,end) both;
 }
-
 @keyframes write{
   from{clip-path:inset(0 100% 0 0)}
   to{clip-path:inset(0 0 0 0)}
@@ -158,8 +130,25 @@ a{color:inherit;text-decoration:none}
   font-size:clamp(.95rem,1.15vw,1.15rem);
   line-height:1.65;
 }
-
-.text p{margin-bottom:1.3em}
+.text p{
+  opacity:0;
+  transform:translateY(35px);
+  margin-bottom:1.3em;
+  transition:opacity .8s ease,transform .8s ease;
+}
+.text p.visible{
+  opacity:1;
+  transform:translateY(0);
+}
+.text p.typing::after{
+  content:"▌";
+  margin-left:2px;
+  animation:blink .8s steps(1) infinite;
+}
+@keyframes blink{
+  0%,45%{opacity:1}
+  46%,100%{opacity:0}
+}
 
 .doodles{
   position:absolute;
@@ -167,62 +156,28 @@ a{color:inherit;text-decoration:none}
   z-index:10;
   pointer-events:none;
 }
-
 .doodle{
   position:absolute;
   z-index:11;
+  opacity:0;
+  transition:opacity .8s ease;
   animation:swing 5s ease-in-out infinite;
 }
-
-.doodle img{
-  display:block;
-  width:100%;
-}
-
-.lampada{
-  top:4%;
-  right:3%;
-  width:145px;
-  transform:rotate(5deg);
-}
-
-.tintas{
-  top:25%;
-  left:-2%;
-  width:80px;
-  transform:rotate(-5deg);
-}
-
-.italia{
-  top:59%;
-  right:2%;
-  width:110px;
-  transform:rotate(4deg);
-}
-
-.moda{
-  top:69%;
-  left:-1%;
-  width:80px;
-  transform:rotate(-4deg);
-}
-
-.cavalo{
-  top:84%;
-  right:3%;
-  width:145px;
-  transform:rotate(5deg);
-}
-
+.doodle.visible{opacity:1}
+.doodle img{display:block;width:100%}
+.lampada{top:4%;right:3%;width:145px}
+.tintas{top:25%;left:-2%;width:80px}
+.italia{top:59%;right:2%;width:110px}
+.moda{top:69%;left:-1%;width:80px}
+.cavalo{top:84%;right:3%;width:145px}
 @keyframes swing{
-  0%,100%{translate:0 0;rotate:-3deg}
-  50%{translate:0 7px;rotate:3deg}
+  0%,100%{transform:rotate(-3deg) translateY(0)}
+  50%{transform:rotate(3deg) translateY(7px)}
 }
 
 .manifesto{
   padding:55px clamp(30px,6vw,100px) 35px;
 }
-
 .values{
   display:flex;
   justify-content:space-between;
@@ -230,11 +185,17 @@ a{color:inherit;text-decoration:none}
   gap:25px;
   font:clamp(2rem,3.7vw,4rem) Hand,serif;
 }
-
-.values span:nth-child(1){transform:rotate(-2deg)}
-.values span:nth-child(2){transform:rotate(2deg)}
-.values span:nth-child(3){transform:rotate(-1deg)}
-.values span:nth-child(4){transform:rotate(2deg)}
+.values span{
+  opacity:0;
+  clip-path:inset(0 100% 0 0);
+}
+.values.visible span{
+  animation:write 1.4s steps(25,end) forwards;
+}
+.values span:nth-child(1){transform:rotate(-2deg);animation-delay:.1s}
+.values span:nth-child(2){transform:rotate(2deg);animation-delay:.35s}
+.values span:nth-child(3){transform:rotate(-1deg);animation-delay:.6s}
+.values span:nth-child(4){transform:rotate(2deg);animation-delay:.85s}
 
 .contacts{
   display:flex;
@@ -243,28 +204,30 @@ a{color:inherit;text-decoration:none}
   gap:40px;
   padding:20px clamp(30px,6vw,100px) 45px;
 }
-
 .eyes{
   width:95px;
-  animation:float 5s ease-in-out infinite;
+  opacity:0;
+  transform:translateX(-60px);
+  transition:opacity .9s ease,transform .9s ease;
 }
-
+.eyes.visible{
+  opacity:1;
+  transform:translateX(0);
+}
 .eyes img{
   display:block;
   width:100%;
+  animation:float 5s ease-in-out infinite;
 }
-
 @keyframes float{
   0%,100%{transform:rotate(-2deg) translateY(0)}
   50%{transform:rotate(2deg) translateY(-8px)}
 }
-
 .contact-list{
   display:flex;
   gap:20px;
   list-style:none;
 }
-
 .contact{
   width:76px;
   height:76px;
@@ -274,13 +237,11 @@ a{color:inherit;text-decoration:none}
   border-radius:50%;
   transition:.3s;
 }
-
 .contact:hover{
-  color:white;
+  color:#fff;
   background:#111;
   transform:translateY(-6px);
 }
-
 .contact svg{
   width:25px;
   height:25px;
@@ -296,7 +257,6 @@ a{color:inherit;text-decoration:none}
   border-top:1px solid #111;
   font:1.25rem Hand,serif;
 }
-
 .top{
   border:0;
   background:none;
@@ -307,50 +267,37 @@ a{color:inherit;text-decoration:none}
 
 @media(max-width:700px){
   .ticker{height:58px}
-
   .nav{
     top:58px;
     grid-template-columns:repeat(2,1fr);
   }
-
-  .nav a{
-    padding:14px;
-    font-size:.8rem;
-  }
-
+  .nav a{padding:14px;font-size:.8rem}
   .about{display:block}
-
   .about-video{min-height:65vh}
-
   .about-content{
     min-height:auto;
     padding:75px 28px;
   }
-
   .title{
     width:100%;
     max-width:100%;
     padding-right:.4em;
     font-size:clamp(2.8rem,14vw,4.5rem);
   }
-
   .doodle{width:52px}
   .lampada,.cavalo{width:78px}
   .italia{width:62px}
-
   .values{
     flex-direction:column;
     align-items:flex-start;
     gap:12px;
     font-size:clamp(2.5rem,13vw,4.5rem);
   }
-
   .contacts{
     flex-direction:column;
     gap:28px;
     padding-top:20px;
   }
-
   .footer{
     flex-direction:column;
     gap:12px;
@@ -376,7 +323,6 @@ a{color:inherit;text-decoration:none}
         <span>I don’t just create content. I understand brands.</span>
         <span>I don’t just create content. I understand brands.</span>
       </div>
-
       <div class="ticker-group">
         <span>I don’t just create content. I understand brands.</span>
         <span>I don’t just create content. I understand brands.</span>
@@ -404,25 +350,11 @@ a{color:inherit;text-decoration:none}
   <div class="about-content">
 
     <div class="doodles">
-      <span class="doodle lampada">
-        <img src="lampada.PNG" alt="">
-      </span>
-
-      <span class="doodle tintas">
-        <img src="tintas.PNG" alt="">
-      </span>
-
-      <span class="doodle italia">
-        <img src="italia.PNG" alt="">
-      </span>
-
-      <span class="doodle moda">
-        <img src="moda.PNG" alt="">
-      </span>
-
-      <span class="doodle cavalo">
-        <img src="cavalo.PNG" alt="">
-      </span>
+      <span class="doodle lampada"><img src="lampada.PNG" alt=""></span>
+      <span class="doodle tintas"><img src="tintas.PNG" alt=""></span>
+      <span class="doodle italia"><img src="italia.PNG" alt=""></span>
+      <span class="doodle moda"><img src="moda.PNG" alt=""></span>
+      <span class="doodle cavalo"><img src="cavalo.PNG" alt=""></span>
     </div>
 
     <div class="number">01 / ABOUT</div>
@@ -430,16 +362,15 @@ a{color:inherit;text-decoration:none}
     <h1 class="title">Eu sou feita de intensidade.</h1>
 
     <div class="text">
-      <p>Nunca soube viver pela metade.</p>
+      <p class="typing">Nunca soube viver pela metade.</p>
 
-      <p>Gosto do que provoca, do que desloca e do que faz sentir. Talvez por isso minha trajetória sempre tenha acontecido no encontro entre mundos aparentemente diferentes: a sensibilidade e a estratégia, a criação e os negócios, a tradição e a vontade de fazer diferente.</p>
+      <p class="typing">Gosto do que provoca, do que desloca e do que faz sentir. Talvez por isso minha trajetória sempre tenha acontecido no encontro entre mundos aparentemente diferentes: a sensibilidade e a estratégia, a criação e os negócios, a tradição e a vontade de fazer diferente.</p>
 
-      <p>Talvez por isso eu tenha me formado em Fashion Design, em Milão. Porque sempre enxerguei a moda como uma forma de linguagem — uma maneira de contar histórias sem precisar dizer uma palavra. Mais tarde, fui para a Administração. Queria entender o outro lado da criação: como uma ideia ganha estrutura, atravessa o tempo e se transforma em algo maior do que ela mesma.</p>
+      <p class="typing">Talvez por isso eu tenha me formado em Fashion Design, em Milão. Porque sempre enxerguei a moda como uma forma de linguagem — uma maneira de contar histórias sem precisar dizer uma palavra. Mais tarde, fui para a Administração. Queria entender o outro lado da criação: como uma ideia ganha estrutura, atravessa o tempo e se transforma em algo maior do que ela mesma.</p>
 
-      <p>Mas existe uma parte de mim que antecede tudo isso: a curiosidade por entender quem somos.<br>
-      Sou apaixonada por desenvolvimento humano e autoconhecimento. Já passei por diferentes retiros, cursos e experiências, e encontro no estoicismo, no espiritismo e no universo simbólico e espiritual diferentes caminhos para olhar para dentro. Tenho uma relação especial com pedras, rituais e tudo aquilo que carrega significado.</p>
+      <p class="typing">Mas existe uma parte de mim que antecede tudo isso: a curiosidade por entender quem somos.<br>Sou apaixonada por desenvolvimento humano e autoconhecimento. Já passei por diferentes retiros, cursos e experiências, e encontro no estoicismo, no espiritismo e no universo simbólico e espiritual diferentes caminhos para olhar para dentro. Tenho uma relação especial com pedras, rituais e tudo aquilo que carrega significado.</p>
 
-      <p>Ler é uma das minhas formas preferidas de me atravessar. Entre tantos assuntos, relações humanas sempre me fascinaram — porque acredito que o encontro com o outro também funciona como um espelho: revela partes nossas que, sozinhos, talvez demorássemos muito mais para enxergar.</p>
+      <p class="typing">Ler é uma das minhas formas preferidas de me atravessar. Entre tantos assuntos, relações humanas sempre me fascinaram — porque acredito que o encontro com o outro também funciona como um espelho: revela partes nossas que, sozinhos, talvez demorássemos muito mais para enxergar.</p>
     </div>
 
   </div>
@@ -461,7 +392,6 @@ a{color:inherit;text-decoration:none}
   </div>
 
   <ul class="contact-list">
-
     <li>
       <a class="contact" href="https://wa.me/5511984842027" target="_blank" aria-label="WhatsApp">
         <svg viewBox="0 0 24 24">
@@ -488,7 +418,6 @@ a{color:inherit;text-decoration:none}
         </svg>
       </a>
     </li>
-
   </ul>
 </section>
 
@@ -500,15 +429,62 @@ a{color:inherit;text-decoration:none}
 </main>
 
 <script>
+const paragraphs=document.querySelectorAll(".typing");
+const doodles=document.querySelectorAll(".doodle");
+const values=document.querySelector(".values");
+const eyes=document.querySelector(".eyes");
+
+paragraphs.forEach(p=>{
+  p.dataset.text=p.textContent.replace(/\s+/g," ").trim();
+  p.textContent="";
+});
+
+function typeText(element){
+  if(element.dataset.done)return;
+  element.dataset.done="true";
+  element.classList.add("visible","typing");
+  const text=element.dataset.text;
+  let i=0;
+
+  function write(){
+    if(i<text.length){
+      element.textContent+=text[i];
+      i++;
+      setTimeout(write,18);
+    }else{
+      element.classList.remove("typing");
+    }
+  }
+
+  write();
+}
+
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(!entry.isIntersecting)return;
+
+    const element=entry.target;
+    element.classList.add("visible");
+
+    if(element.classList.contains("typing")){
+      setTimeout(()=>typeText(element),450);
+    }
+
+    observer.unobserve(element);
+  });
+},{threshold:.18});
+
+paragraphs.forEach(p=>observer.observe(p));
+doodles.forEach(d=>observer.observe(d));
+observer.observe(values);
+observer.observe(eyes);
+
 document.querySelectorAll("video").forEach(video=>{
   video.play().catch(()=>{});
 });
 
 document.querySelector(".top").addEventListener("click",()=>{
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
+  window.scrollTo({top:0,behavior:"smooth"});
 });
 </script>
 
