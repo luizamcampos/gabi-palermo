@@ -55,6 +55,7 @@
     body {
       width: 100%;
       min-width: 320px;
+      background: var(--black);
       font-family: var(--font);
     }
 
@@ -102,17 +103,14 @@
       inset: 0;
       z-index: 1;
       pointer-events: none;
-      background:
-        linear-gradient(
-          to bottom,
-          rgba(0, 0, 0, .08),
-          transparent 30%,
-          transparent 72%,
-          rgba(0, 0, 0, .22)
-        );
+      background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, .08),
+        transparent 30%,
+        transparent 72%,
+        rgba(0, 0, 0, .22)
+      );
     }
-
-    /* FRASE PASSANDO */
 
     .ticker {
       position: absolute;
@@ -128,13 +126,9 @@
       background: transparent;
       border-bottom: 1px solid rgba(255, 255, 255, .16);
       isolation: isolate;
-      transform: translateZ(0);
-      -webkit-transform: translateZ(0);
     }
 
     .ticker-track {
-      position: relative;
-      z-index: 1;
       display: flex;
       width: max-content;
       white-space: nowrap;
@@ -172,8 +166,6 @@
         transform: translateX(-50%);
       }
     }
-
-    /* MENU */
 
     .main-nav {
       position: absolute;
@@ -231,8 +223,6 @@
       text-transform: uppercase;
     }
 
-    /* ABOUT */
-
     .about-split {
       min-height: 100vh;
       display: grid;
@@ -250,7 +240,6 @@
       position: relative;
       min-height: 100vh;
       overflow: hidden;
-      background: transparent;
     }
 
     .about-video {
@@ -262,6 +251,7 @@
     }
 
     .about-content {
+      position: relative;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
@@ -278,20 +268,16 @@
 
     .about-title {
       max-width: 700px;
-      margin-bottom: clamp(35px, 4vw, 60px);
+      margin: 0 0 clamp(35px, 4vw, 60px) .08em;
+      padding: .14em .14em .2em 0;
       font-family: var(--display);
       font-size: clamp(2.6rem, 4.3vw, 5rem);
       font-weight: 400;
-      line-height: .9;
+      line-height: 1.02;
       letter-spacing: -.025em;
-      text-transform: none;
-      rotate: -1deg;
+      rotate: -2deg;
+      transform-origin: left center;
     }
-
-    /*
-      O título continua aparecendo normalmente mesmo se
-      a animação ou o JavaScript não carregarem.
-    */
 
     .write-heading {
       opacity: 1 !important;
@@ -314,7 +300,78 @@
       margin-top: 1.25em;
     }
 
-    /* PALAVRAS */
+    .side-doodles {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .side-doodle {
+      position: absolute;
+      display: block;
+      width: clamp(52px, 6vw, 92px);
+      opacity: 0;
+      transition: opacity 1s ease, transform 1s cubic-bezier(.2, .7, .2, 1);
+    }
+
+    .side-doodle img {
+      display: block;
+      width: 100%;
+      height: auto;
+      filter: drop-shadow(0 6px 5px rgba(0, 0, 0, .08));
+      transform-origin: 50% 0;
+    }
+
+    .side-doodle.is-visible {
+      opacity: 1;
+      transform: translate(0, 0) !important;
+    }
+
+    .side-doodle.is-visible img {
+      animation: doodle-swing 5.5s ease-in-out infinite;
+      animation-delay: var(--swing-delay, 0s);
+    }
+
+    .doodle-lampada {
+      top: 4%;
+      right: 3%;
+      transform: translate(45px, -25px) rotate(5deg);
+    }
+
+    .doodle-tintas {
+      top: 25%;
+      left: -2%;
+      transform: translate(-45px, 25px) rotate(-5deg);
+    }
+
+    .doodle-italia {
+      top: 47%;
+      right: 0;
+      transform: translate(45px, 25px) rotate(4deg);
+    }
+
+    .doodle-moda {
+      top: 68%;
+      left: -1%;
+      transform: translate(-45px, 25px) rotate(-4deg);
+    }
+
+    .doodle-cavalo {
+      top: 87%;
+      right: 4%;
+      transform: translate(45px, 25px) rotate(5deg);
+    }
+
+    @keyframes doodle-swing {
+      0%, 100% {
+        transform: rotate(-3deg) translateY(0);
+      }
+
+      50% {
+        transform: rotate(3deg) translateY(5px);
+      }
+    }
 
     .manifesto {
       padding: clamp(75px, 9vw, 140px) clamp(32px, 6vw, 100px);
@@ -341,39 +398,19 @@
       font-family: var(--display);
       font-size: clamp(2rem, 3.5vw, 4rem);
       line-height: 1.2;
-      letter-spacing: 0;
-      text-transform: none;
       opacity: 1 !important;
       transform: none !important;
     }
 
     .manifesto-values span {
       display: inline-block;
-      opacity: 1;
       padding: .18em .18em .3em;
+      opacity: 1;
       clip-path: none;
-      will-change: clip-path;
-      overflow: visible;
     }
 
     .manifesto-values.is-visible span {
       animation: invisible-pen 1.25s cubic-bezier(.22, .7, .2, 1) forwards;
-    }
-
-    .manifesto-values.is-visible span:nth-child(1) {
-      animation-delay: .05s;
-    }
-
-    .manifesto-values.is-visible span:nth-child(2) {
-      animation-delay: .35s;
-    }
-
-    .manifesto-values.is-visible span:nth-child(3) {
-      animation-delay: .65s;
-    }
-
-    .manifesto-values.is-visible span:nth-child(4) {
-      animation-delay: .95s;
     }
 
     .manifesto-values span:nth-child(1) {
@@ -404,141 +441,44 @@
       }
     }
 
-    /* CONTATOS E ENVELOPE */
-
     .contacts {
       min-height: 70vh;
-      padding:
-        clamp(130px, 14vw, 210px)
-        clamp(32px, 6vw, 100px)
-        clamp(70px, 8vw, 120px);
+      padding: clamp(130px, 14vw, 210px) clamp(32px, 6vw, 100px) clamp(70px, 8vw, 120px);
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 60px;
       color: var(--black);
-      background: transparent;
     }
 
-    .envelope-wrap {
-      display: grid;
-      justify-items: center;
-      gap: 18px;
+    .eyes-contact {
+      width: clamp(68px, 9vw, 125px);
+      flex: 0 0 auto;
+      opacity: 0;
+      transform: translateX(-70px);
+      transition: opacity 1s ease, transform 1s cubic-bezier(.2, .7, .2, 1);
     }
 
-    .envelope-button {
-      position: relative;
-      width: clamp(250px, 31vw, 410px);
-      aspect-ratio: 1.55;
-      border: 0;
-      color: var(--black);
-      background: transparent;
-      cursor: pointer;
-      perspective: 1200px;
-      overflow: visible;
-      -webkit-tap-highlight-color: transparent;
+    .eyes-contact.is-visible {
+      opacity: 1;
+      transform: translateX(0);
     }
 
-    .envelope-button:focus-visible {
-      outline: 1px solid var(--black);
-      outline-offset: 12px;
-    }
-
-    .envelope-back {
-      position: absolute;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      z-index: 1;
-      height: 72%;
-      border: 1px solid rgba(5, 5, 5, .42);
-      background-color: var(--paper-color);
-      background-image: var(--paper-texture);
-      background-repeat: repeat;
-      box-shadow: 0 18px 45px rgba(0, 0, 0, .08);
-    }
-
-    .envelope-card {
-      position: absolute;
-      right: 10%;
-      bottom: 12%;
-      left: 10%;
-      z-index: 2;
-      height: 78%;
-      display: grid;
-      place-items: center;
-      border: 1px solid rgba(5, 5, 5, .35);
-      background-color: var(--paper-color);
-      background-image: var(--paper-texture);
-      background-repeat: repeat;
-      transform: translateY(18%) scale(.92);
-      transition:
-        transform 1s cubic-bezier(.18, .8, .22, 1),
-        box-shadow .7s ease;
-    }
-
-    .envelope-card img {
-      width: min(55%, 155px);
-      height: auto;
+    .eyes-contact img {
       display: block;
+      width: 100%;
+      height: auto;
+      animation: eyes-float 5s ease-in-out infinite;
     }
 
-    .envelope-front {
-      position: absolute;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      z-index: 3;
-      height: 72%;
-      border: 1px solid rgba(5, 5, 5, .42);
-      background-color: var(--paper-color);
-      background-image: var(--paper-texture);
-      background-repeat: repeat;
-      clip-path:
-        polygon(
-          0 0,
-          50% 48%,
-          100% 0,
-          100% 100%,
-          0 100%
-        );
-    }
+    @keyframes eyes-float {
+      0%, 100% {
+        transform: translateY(0) rotate(-2deg);
+      }
 
-    .envelope-flap {
-      position: absolute;
-      top: 28%;
-      right: 0;
-      left: 0;
-      z-index: 4;
-      height: 48%;
-      border: 1px solid rgba(5, 5, 5, .42);
-      background-color: var(--paper-color);
-      background-image: var(--paper-texture);
-      background-repeat: repeat;
-      clip-path: polygon(0 0, 100% 0, 50% 100%);
-      transform-origin: top center;
-      transform: rotateX(0deg);
-      transition:
-        transform .75s cubic-bezier(.3, .7, .2, 1),
-        z-index 0s linear .35s;
-      backface-visibility: visible;
-    }
-
-    .envelope-button.is-open .envelope-flap {
-      z-index: 0;
-      transform: rotateX(180deg);
-    }
-
-    .envelope-button.is-open .envelope-card {
-      transform: translateY(-76%) scale(1);
-      box-shadow: 0 20px 45px rgba(0, 0, 0, .14);
-    }
-
-    .envelope-hint {
-      font-family: var(--font);
-      font-size: .76rem;
-      letter-spacing: .09em;
-      text-transform: lowercase;
+      50% {
+        transform: translateY(-8px) rotate(2deg);
+      }
     }
 
     .contact-list {
@@ -554,10 +494,7 @@
       place-items: center;
       border: 1px solid rgba(5, 5, 5, .75);
       border-radius: 50%;
-      transition:
-        color .25s ease,
-        background .25s ease,
-        transform .25s ease;
+      transition: color .25s ease, background .25s ease, transform .25s ease;
     }
 
     .contact-link:hover,
@@ -576,14 +513,10 @@
       stroke-width: 1.7;
     }
 
-    /* ELEMENTOS ENTRANDO DURANTE A ROLAGEM */
-
     .reveal {
       opacity: 0;
       transform: translateY(65px);
-      transition:
-        opacity 1s cubic-bezier(.2, .7, .2, 1),
-        transform 1s cubic-bezier(.2, .7, .2, 1);
+      transition: opacity 1s cubic-bezier(.2, .7, .2, 1), transform 1s cubic-bezier(.2, .7, .2, 1);
       transition-delay: var(--delay, 0s);
     }
 
@@ -599,8 +532,6 @@
       opacity: 1;
       transform: translate(0, 0);
     }
-
-    /* CELULAR */
 
     @media (max-width: 650px) {
       :root {
@@ -631,7 +562,6 @@
 
       .hero-video {
         transform: translateX(6%) scale(1.12);
-        transform-origin: center center;
       }
 
       .about-split {
@@ -649,7 +579,24 @@
       }
 
       .about-title {
-        font-size: clamp(3rem, 15vw, 5rem);
+        margin-left: .02em;
+        padding-right: .18em;
+        font-size: clamp(2.8rem, 14vw, 4.5rem);
+      }
+
+      .side-doodle {
+        width: 48px;
+      }
+
+      .doodle-lampada,
+      .doodle-italia,
+      .doodle-cavalo {
+        right: -2%;
+      }
+
+      .doodle-tintas,
+      .doodle-moda {
+        left: -3%;
       }
 
       .manifesto {
@@ -664,19 +611,18 @@
 
       .contacts {
         min-height: 75vh;
-        flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
         justify-content: center;
-        gap: 80px;
-        padding-top: 150px;
+        gap: 55px;
+        padding-top: 110px;
       }
 
-      .envelope-wrap {
-        width: 100%;
+      .eyes-contact {
+        width: 90px;
       }
 
-      .envelope-button {
-        width: min(82vw, 360px);
+      .contact-list {
+        justify-content: center;
       }
     }
 
@@ -702,61 +648,30 @@
 
 <body>
   <main>
-    <section
-      class="home"
-      aria-label="Abertura do portfólio de Gabi Palermo"
-    >
-      <video
-        class="hero-video"
-        autoplay
-        muted
-        loop
-        playsinline
-        preload="auto"
-        aria-label="Vídeo de apresentação de Gabi Palermo"
-      >
+    <section class="home" aria-label="Abertura do portfólio de Gabi Palermo">
+      <video class="hero-video" autoplay muted loop playsinline preload="auto">
         <source src="videovintage.mp4" type="video/mp4">
-        Seu navegador não conseguiu reproduzir o vídeo.
       </video>
 
       <div class="video-fallback">Gabi Palermo</div>
 
-      <div
-        class="ticker"
-        aria-label="I don't just create content. I understand brands."
-      >
+      <div class="ticker">
         <div class="ticker-track">
           <div class="ticker-group">
-            <span class="ticker-text">
-              I don’t just create content. I understand brands.
-            </span>
-
-            <span class="ticker-text">
-              I don’t just create content. I understand brands.
-            </span>
-
-            <span class="ticker-text">
-              I don’t just create content. I understand brands.
-            </span>
+            <span class="ticker-text">I don’t just create content. I understand brands.</span>
+            <span class="ticker-text">I don’t just create content. I understand brands.</span>
+            <span class="ticker-text">I don’t just create content. I understand brands.</span>
           </div>
 
           <div class="ticker-group" aria-hidden="true">
-            <span class="ticker-text">
-              I don’t just create content. I understand brands.
-            </span>
-
-            <span class="ticker-text">
-              I don’t just create content. I understand brands.
-            </span>
-
-            <span class="ticker-text">
-              I don’t just create content. I understand brands.
-            </span>
+            <span class="ticker-text">I don’t just create content. I understand brands.</span>
+            <span class="ticker-text">I don’t just create content. I understand brands.</span>
+            <span class="ticker-text">I don’t just create content. I understand brands.</span>
           </div>
         </div>
       </div>
 
-      <nav class="main-nav" aria-label="Navegação principal">
+      <nav class="main-nav">
         <a class="nav-link" href="#about">
           <span class="nav-number">01</span>
           <span>about</span>
@@ -779,67 +694,68 @@
       </nav>
     </section>
 
-    <section
-      class="about-split"
-      id="about"
-      aria-labelledby="about-title"
-    >
+    <section class="about-split" id="about">
       <div class="about-media reveal reveal-left">
-        <video
-          class="about-video"
-          autoplay
-          muted
-          loop
-          playsinline
-          preload="metadata"
-        >
+        <video class="about-video" autoplay muted loop playsinline preload="metadata">
           <source src="photobooth.mp4" type="video/mp4">
-          Seu navegador não conseguiu reproduzir o vídeo.
         </video>
       </div>
 
       <div class="about-content">
-        <p class="section-number reveal">
-          01 / ABOUT
-        </p>
+        <div class="side-doodles" aria-hidden="true">
+          <span class="side-doodle doodle-lampada reveal reveal-right">
+            <img src="lampada.PNG" alt="">
+          </span>
 
-        <h1
-          class="about-title reveal write-heading"
-          id="about-title"
-          style="--delay: .08s;"
-        >
+          <span class="side-doodle doodle-tintas reveal reveal-left">
+            <img src="tintas.PNG" alt="">
+          </span>
+
+          <span class="side-doodle doodle-italia reveal reveal-right">
+            <img src="italia.PNG" alt="">
+          </span>
+
+          <span class="side-doodle doodle-moda reveal reveal-left">
+            <img src="moda.PNG" alt="">
+          </span>
+
+          <span class="side-doodle doodle-cavalo reveal reveal-right">
+            <img src="cavalo.PNG" alt="">
+          </span>
+        </div>
+
+        <p class="section-number reveal">01 / ABOUT</p>
+
+        <h1 class="about-title reveal write-heading" id="about-title">
           Eu sou feita de intensidade.
         </h1>
 
         <div class="about-intro">
-          <p class="reveal" style="--delay: .16s;">
+          <p class="reveal">
             Nunca soube viver pela metade.
           </p>
 
-          <p class="reveal" style="--delay: .24s;">
+          <p class="reveal">
             Gosto do que provoca, do que desloca e do que faz sentir. Talvez por isso minha trajetória sempre tenha acontecido no encontro entre mundos aparentemente diferentes: a sensibilidade e a estratégia, a criação e os negócios, a tradição e a vontade de fazer diferente.
           </p>
 
-          <p class="reveal" style="--delay: .32s;">
+          <p class="reveal">
             Talvez por isso eu tenha me formado em Fashion Design, em Milão. Porque sempre enxerguei a moda como uma forma de linguagem — uma maneira de contar histórias sem precisar dizer uma palavra. Mais tarde, fui para a Administração. Queria entender o outro lado da criação: como uma ideia ganha estrutura, atravessa o tempo e se transforma em algo maior do que ela mesma.
           </p>
 
-          <p class="reveal" style="--delay: .4s;">
+          <p class="reveal">
             Mas existe uma parte de mim que antecede tudo isso: a curiosidade por entender quem somos.<br>
             Sou apaixonada por desenvolvimento humano e autoconhecimento. Já passei por diferentes retiros, cursos e experiências, e encontro no estoicismo, no espiritismo e no universo simbólico e espiritual diferentes caminhos para olhar para dentro. Tenho uma relação especial com pedras, rituais e tudo aquilo que carrega significado.
           </p>
 
-          <p class="reveal" style="--delay: .48s;">
+          <p class="reveal">
             Ler é uma das minhas formas preferidas de me atravessar. Entre tantos assuntos, relações humanas sempre me fascinaram — porque acredito que o encontro com o outro também funciona como um espelho: revela partes nossas que, sozinhos, talvez demorássemos muito mais para enxergar.
           </p>
         </div>
       </div>
     </section>
 
-    <section
-      class="manifesto"
-      aria-label="Manifesto de Gabi Palermo"
-    >
+    <section class="manifesto">
       <div class="manifesto-inner">
         <div class="manifesto-values reveal">
           <span>Intensidade</span>
@@ -850,55 +766,15 @@
       </div>
     </section>
 
-    <section class="contacts" aria-label="Contatos">
-      <div class="envelope-wrap reveal reveal-left">
-        <button
-          class="envelope-button"
-          type="button"
-          aria-label="Abrir envelope"
-          aria-expanded="false"
-        >
-          <span
-            class="envelope-back"
-            aria-hidden="true"
-          ></span>
-
-          <span
-            class="envelope-card"
-            aria-hidden="true"
-          >
-            <img src="olhos.PNG" alt="">
-          </span>
-
-          <span
-            class="envelope-front"
-            aria-hidden="true"
-          ></span>
-
-          <span
-            class="envelope-flap"
-            aria-hidden="true"
-          ></span>
-        </button>
-
-        <span class="envelope-hint">
-          clique para abrir
-        </span>
+    <section class="contacts">
+      <div class="eyes-contact reveal reveal-left">
+        <img src="olhos.PNG" alt="Ilustração de três olhos">
       </div>
 
-      <ul
-        class="contact-list reveal reveal-right"
-        aria-label="Contatos"
-      >
+      <ul class="contact-list reveal reveal-right">
         <li>
-          <a
-            class="contact-link"
-            href="https://wa.me/5511984842027"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="WhatsApp"
-          >
-            <svg viewBox="0 0 24 24" aria-hidden="true">
+          <a class="contact-link" href="https://wa.me/5511984842027" target="_blank" aria-label="WhatsApp">
+            <svg viewBox="0 0 24 24">
               <path d="M20 11.6a8 8 0 0 1-11.8 7L4 20l1.4-4A8 8 0 1 1 20 11.6Z"/>
               <path d="M9 8.5c.5 2.5 2 4 4.5 5l1.5-1 2 1.5c-.5 1.5-1.5 2-3 2-3.5-.5-6-3-6.5-6.5 0-1.5.5-2.5 1.5-3l1.5 2Z"/>
             </svg>
@@ -906,34 +782,18 @@
         </li>
 
         <li>
-          <a
-            class="contact-link"
-            href="https://www.instagram.com/gabipalermoo/"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Instagram"
-          >
-            <svg viewBox="0 0 24 24" aria-hidden="true">
+          <a class="contact-link" href="https://www.instagram.com/gabipalermoo/" target="_blank" aria-label="Instagram">
+            <svg viewBox="0 0 24 24">
               <rect x="3" y="3" width="18" height="18" rx="5"/>
               <circle cx="12" cy="12" r="4"/>
-              <circle
-                cx="17.4"
-                cy="6.7"
-                r=".8"
-                fill="currentColor"
-                stroke="none"
-              />
+              <circle cx="17.4" cy="6.7" r=".8" fill="currentColor" stroke="none"/>
             </svg>
           </a>
         </li>
 
         <li>
-          <a
-            class="contact-link"
-            href="mailto:gabrielapalermoandrade@gmail.com"
-            aria-label="E-mail"
-          >
-            <svg viewBox="0 0 24 24" aria-hidden="true">
+          <a class="contact-link" href="mailto:gabrielapalermoandrade@gmail.com" aria-label="E-mail">
+            <svg viewBox="0 0 24 24">
               <rect x="3" y="5" width="18" height="14" rx="1"/>
               <path d="m4 7 8 6 8-6"/>
             </svg>
@@ -956,57 +816,23 @@
       });
     });
 
-    const envelopeButton =
-      document.querySelector(".envelope-button");
-
-    const envelopeHint =
-      document.querySelector(".envelope-hint");
-
-    if (envelopeButton) {
-      envelopeButton.addEventListener("click", () => {
-        const isOpen =
-          envelopeButton.classList.toggle("is-open");
-
-        envelopeButton.setAttribute(
-          "aria-expanded",
-          String(isOpen)
-        );
-
-        envelopeButton.setAttribute(
-          "aria-label",
-          isOpen
-            ? "Fechar envelope"
-            : "Abrir envelope"
-        );
-
-        if (envelopeHint) {
-          envelopeHint.textContent =
-            isOpen
-              ? "clique para fechar"
-              : "clique para abrir";
-        }
-      });
-    }
-
-    const revealElements =
-      document.querySelectorAll(".reveal");
+    const revealElements = document.querySelectorAll(".reveal");
 
     if ("IntersectionObserver" in window) {
-      const revealObserver =
-        new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                entry.target.classList.add("is-visible");
-                revealObserver.unobserve(entry.target);
-              }
-            });
-          },
-          {
-            threshold: 0.14,
-            rootMargin: "0px 0px -8% 0px"
-          }
-        );
+      const revealObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+              revealObserver.unobserve(entry.target);
+            }
+          });
+        },
+        {
+          threshold: 0.14,
+          rootMargin: "0px 0px -8% 0px"
+        }
+      );
 
       revealElements.forEach((element) => {
         revealObserver.observe(element);
