@@ -1,847 +1,418 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="description" content="Site pessoal e portfólio de Gabi Palermo.">
-  <title>Gabi Palermo</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
-
-  <style>
-    @font-face {
-      font-family: "Altesse";
-      src: url("AltesseStd-DEMO-Regular38pt%202.otf") format("opentype");
-      font-weight: 400;
-      font-style: normal;
-      font-display: swap;
-    }
-
-    @font-face {
-      font-family: "JMH Typewriter";
-      src: url("JMH%20Typewriter.otf") format("opentype");
-      font-weight: 400;
-      font-style: normal;
-      font-display: swap;
-    }
-
-    @font-face {
-      font-family: "Coalhand Luke";
-      src: url("CoalhandLuke%20TRIAL.otf") format("opentype");
-      font-weight: 400;
-      font-style: normal;
-      font-display: swap;
-    }
-
-    :root {
-      --black: #050505;
-      --white: #ffffff;
-      --paper-color: #f5f4ef;
-      --paper-texture: url("0D7DD486-A855-4A89-846C-6E6ECA6C75E3_1_201_a.jpeg");
-      --bar-height: clamp(58px, 2cm, 76px);
-      --font: "JMH Typewriter", "DM Sans", monospace;
-      --display: "Coalhand Luke", "Altesse", Georgia, serif;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html,
-    body {
-      width: 100%;
-      min-width: 320px;
-      background: var(--black);
-      font-family: var(--font);
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      overflow-x: hidden;
-      background-color: var(--paper-color);
-      background-image: var(--paper-texture);
-      background-repeat: repeat;
-      background-position: top left;
-      background-size: auto;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    .home {
-      position: relative;
-      width: 100%;
-      height: 100svh;
-      min-height: 560px;
-      overflow: hidden;
-      color: var(--white);
-      background: var(--black);
-    }
-
-    .hero-video {
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-    }
-
-    .home::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: 1;
-      pointer-events: none;
-      background: linear-gradient(
-        to bottom,
-        rgba(0, 0, 0, .08),
-        transparent 30%,
-        transparent 72%,
-        rgba(0, 0, 0, .22)
-      );
-    }
-
-    .ticker {
-      position: absolute;
-      top: 0;
-      right: 0;
-      left: 0;
-      z-index: 4;
-      height: var(--bar-height);
-      display: flex;
-      align-items: center;
-      overflow: hidden;
-      color: var(--white);
-      background: transparent;
-      border-bottom: 1px solid rgba(255, 255, 255, .16);
-      isolation: isolate;
-    }
-
-    .ticker-track {
-      display: flex;
-      width: max-content;
-      white-space: nowrap;
-      animation: ticker-move 20s linear infinite;
-      will-change: transform;
-    }
-
-    .ticker-group {
-      display: flex;
-      align-items: center;
-      flex-shrink: 0;
-    }
-
-    .ticker-text {
-      display: inline-flex;
-      align-items: center;
-      font-family: var(--display);
-      font-size: clamp(1.05rem, 1.7vw, 1.55rem);
-      font-weight: 400;
-      letter-spacing: .01em;
-    }
-
-    .ticker-text::after {
-      content: "✦";
-      margin: 0 clamp(25px, 4vw, 64px);
-      font-size: .65em;
-    }
-
-    @keyframes ticker-move {
-      from {
-        transform: translateX(0);
-      }
-
-      to {
-        transform: translateX(-50%);
-      }
-    }
-
-    .main-nav {
-      position: absolute;
-      top: var(--bar-height);
-      right: 0;
-      left: 0;
-      z-index: 4;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      color: var(--white);
-      border-bottom: 1px solid rgba(255, 255, 255, .65);
-      background: rgba(0, 0, 0, .08);
-      backdrop-filter: blur(2px);
-      -webkit-backdrop-filter: blur(2px);
-    }
-
-    .nav-link {
-      min-height: 58px;
-      display: flex;
-      align-items: center;
-      gap: clamp(7px, 1vw, 14px);
-      padding: 0 clamp(14px, 2.5vw, 38px);
-      border-right: 1px solid rgba(255, 255, 255, .65);
-      font-size: clamp(.82rem, 1.2vw, 1rem);
-      text-transform: lowercase;
-      transition: color .25s ease, background .25s ease;
-    }
-
-    .nav-link:last-child {
-      border-right: 0;
-    }
-
-    .nav-number {
-      font-size: .72em;
-      opacity: .72;
-    }
-
-    .nav-link:hover,
-    .nav-link:focus-visible {
-      color: var(--black);
-      background: var(--white);
-      outline: 0;
-    }
-
-    .video-fallback {
-      position: absolute;
-      inset: 0;
-      z-index: -1;
-      display: grid;
-      place-items: center;
-      color: var(--white);
-      background: var(--black);
-      font-size: .8rem;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-    }
-
-    .about-split {
-      min-height: 100vh;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      overflow: hidden;
-      color: var(--black);
-      background-color: var(--paper-color);
-      background-image: var(--paper-texture);
-      background-repeat: repeat;
-      background-position: top left;
-      background-size: auto;
-    }
-
-    .about-media {
-      position: relative;
-      min-height: 100vh;
-      overflow: hidden;
-    }
-
-    .about-video {
-      width: 100%;
-      height: 100%;
-      min-height: 100vh;
-      display: block;
-      object-fit: cover;
-    }
-
-    .about-content {
-      position: relative;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: clamp(70px, 6vw, 110px);
-    }
-
-    .section-number {
-      margin-bottom: clamp(35px, 5vw, 75px);
-      font-size: .76rem;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-    }
-
-    .about-title {
-      max-width: 700px;
-      margin: 0 0 clamp(35px, 4vw, 60px) .08em;
-      padding: .14em .14em .2em 0;
-      font-family: var(--display);
-      font-size: clamp(2.6rem, 4.3vw, 5rem);
-      font-weight: 400;
-      line-height: 1.02;
-      letter-spacing: -.025em;
-      rotate: -2deg;
-      transform-origin: left center;
-    }
-
-    .write-heading {
-      opacity: 1 !important;
-      transform: none !important;
-      clip-path: none;
-      will-change: clip-path;
-    }
-
-    .write-heading.is-visible {
-      animation: invisible-pen 1.8s cubic-bezier(.22, .7, .2, 1) forwards;
-    }
-
-    .about-intro {
-      max-width: 680px;
-      font-size: clamp(.94rem, 1.05vw, 1.1rem);
-      line-height: 1.6;
-    }
-
-    .about-intro p + p {
-      margin-top: 1.25em;
-    }
-
-    .side-doodles {
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-      pointer-events: none;
-    }
-
-    .side-doodle {
-      position: absolute;
-      display: block;
-      width: clamp(52px, 6vw, 92px);
-      opacity: 0;
-      transition: opacity 1s ease, transform 1s cubic-bezier(.2, .7, .2, 1);
-    }
-
-    .side-doodle img {
-      display: block;
-      width: 100%;
-      height: auto;
-      filter: drop-shadow(0 6px 5px rgba(0, 0, 0, .08));
-      transform-origin: 50% 0;
-    }
-
-    .side-doodle.is-visible {
-      opacity: 1;
-      transform: translate(0, 0) !important;
-    }
-
-    .side-doodle.is-visible img {
-      animation: doodle-swing 5.5s ease-in-out infinite;
-      animation-delay: var(--swing-delay, 0s);
-    }
-
-    .doodle-lampada {
-      top: 4%;
-      right: 3%;
-      transform: translate(45px, -25px) rotate(5deg);
-    }
-
-    .doodle-tintas {
-      top: 25%;
-      left: -2%;
-      transform: translate(-45px, 25px) rotate(-5deg);
-    }
-
-    .doodle-italia {
-      top: 47%;
-      right: 0;
-      transform: translate(45px, 25px) rotate(4deg);
-    }
-
-    .doodle-moda {
-      top: 68%;
-      left: -1%;
-      transform: translate(-45px, 25px) rotate(-4deg);
-    }
-
-    .doodle-cavalo {
-      top: 87%;
-      right: 4%;
-      transform: translate(45px, 25px) rotate(5deg);
-    }
-
-    @keyframes doodle-swing {
-      0%, 100% {
-        transform: rotate(-3deg) translateY(0);
-      }
-
-      50% {
-        transform: rotate(3deg) translateY(5px);
-      }
-    }
-
-    .manifesto {
-      padding: clamp(75px, 9vw, 140px) clamp(32px, 6vw, 100px);
-      color: var(--black);
-      background-color: var(--paper-color);
-      background-image: var(--paper-texture);
-      background-repeat: repeat;
-      background-position: top left;
-      background-size: auto;
-      border-top: 1px solid #d8d8d8;
-    }
-
-    .manifesto-inner {
-      width: min(1200px, 100%);
-      margin: 0 auto;
-    }
-
-    .manifesto-values {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: center;
-      gap: clamp(35px, 6vw, 85px);
-      font-family: var(--display);
-      font-size: clamp(2rem, 3.5vw, 4rem);
-      line-height: 1.2;
-      opacity: 1 !important;
-      transform: none !important;
-    }
-
-    .manifesto-values span {
-      display: inline-block;
-      padding: .18em .18em .3em;
-      opacity: 1;
-      clip-path: none;
-    }
-
-    .manifesto-values.is-visible span {
-      animation: invisible-pen 1.25s cubic-bezier(.22, .7, .2, 1) forwards;
-    }
-
-    .manifesto-values span:nth-child(1) {
-      rotate: -2deg;
-    }
-
-    .manifesto-values span:nth-child(2) {
-      rotate: 1.5deg;
-    }
-
-    .manifesto-values span:nth-child(3) {
-      rotate: -1deg;
-    }
-
-    .manifesto-values span:nth-child(4) {
-      rotate: 2deg;
-    }
-
-    @keyframes invisible-pen {
-      0% {
-        opacity: 1;
-        clip-path: inset(0 100% 0 0);
-      }
-
-      100% {
-        opacity: 1;
-        clip-path: inset(0 0 0 0);
-      }
-    }
-
-    .contacts {
-      min-height: 70vh;
-      padding: clamp(130px, 14vw, 210px) clamp(32px, 6vw, 100px) clamp(70px, 8vw, 120px);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 60px;
-      color: var(--black);
-    }
-
-    .eyes-contact {
-      width: clamp(68px, 9vw, 125px);
-      flex: 0 0 auto;
-      opacity: 0;
-      transform: translateX(-70px);
-      transition: opacity 1s ease, transform 1s cubic-bezier(.2, .7, .2, 1);
-    }
-
-    .eyes-contact.is-visible {
-      opacity: 1;
-      transform: translateX(0);
-    }
-
-    .eyes-contact img {
-      display: block;
-      width: 100%;
-      height: auto;
-      animation: eyes-float 5s ease-in-out infinite;
-    }
-
-    @keyframes eyes-float {
-      0%, 100% {
-        transform: translateY(0) rotate(-2deg);
-      }
-
-      50% {
-        transform: translateY(-8px) rotate(2deg);
-      }
-    }
-
-    .contact-list {
-      display: flex;
-      gap: clamp(14px, 2vw, 28px);
-      list-style: none;
-    }
-
-    .contact-link {
-      width: clamp(68px, 7vw, 98px);
-      aspect-ratio: 1;
-      display: grid;
-      place-items: center;
-      border: 1px solid rgba(5, 5, 5, .75);
-      border-radius: 50%;
-      transition: color .25s ease, background .25s ease, transform .25s ease;
-    }
-
-    .contact-link:hover,
-    .contact-link:focus-visible {
-      color: var(--white);
-      background: var(--black);
-      transform: translateY(-7px);
-      outline: 0;
-    }
-
-    .contact-link svg {
-      width: 30%;
-      height: 30%;
-      fill: none;
-      stroke: currentColor;
-      stroke-width: 1.7;
-    }
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(65px);
-      transition: opacity 1s cubic-bezier(.2, .7, .2, 1), transform 1s cubic-bezier(.2, .7, .2, 1);
-      transition-delay: var(--delay, 0s);
-    }
-
-    .reveal-left {
-      transform: translateX(-90px);
-    }
-
-    .reveal-right {
-      transform: translateX(90px);
-    }
-
-    .reveal.is-visible {
-      opacity: 1;
-      transform: translate(0, 0);
-    }
-
-    @media (max-width: 650px) {
-      :root {
-        --bar-height: 58px;
-      }
-
-      .main-nav {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .nav-link {
-        min-height: 47px;
-        padding: 0 15px;
-        font-size: .78rem;
-      }
-
-      .nav-link:nth-child(2) {
-        border-right: 0;
-      }
-
-      .nav-link:nth-child(-n + 2) {
-        border-bottom: 1px solid rgba(255, 255, 255, .65);
-      }
-
-      .ticker-track {
-        animation-duration: 15s;
-      }
-
-      .hero-video {
-        transform: translateX(6%) scale(1.12);
-      }
-
-      .about-split {
-        grid-template-columns: 1fr;
-      }
-
-      .about-media,
-      .about-video {
-        min-height: 72vh;
-      }
-
-      .about-content {
-        min-height: auto;
-        padding: 90px 25px;
-      }
-
-      .about-title {
-        margin-left: .02em;
-        padding-right: .18em;
-        font-size: clamp(2.8rem, 14vw, 4.5rem);
-      }
-
-      .side-doodle {
-        width: 48px;
-      }
-
-      .doodle-lampada,
-      .doodle-italia,
-      .doodle-cavalo {
-        right: -2%;
-      }
-
-      .doodle-tintas,
-      .doodle-moda {
-        left: -3%;
-      }
-
-      .manifesto {
-        padding: 100px 25px;
-      }
-
-      .manifesto-values {
-        align-items: flex-start;
-        flex-direction: column;
-        font-size: clamp(2.6rem, 13vw, 4.5rem);
-      }
-
-      .contacts {
-        min-height: 75vh;
-        align-items: center;
-        justify-content: center;
-        gap: 55px;
-        padding-top: 110px;
-      }
-
-      .eyes-contact {
-        width: 90px;
-      }
-
-      .contact-list {
-        justify-content: center;
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .ticker-track {
-        animation-play-state: paused;
-      }
-
-      .write-heading,
-      .manifesto-values span {
-        opacity: 1;
-        clip-path: none;
-        animation: none !important;
-      }
-
-      .reveal {
-        opacity: 1;
-        transform: none;
-      }
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Gabi Palermo</title>
+
+<style>
+@font-face{
+  font-family:Typewriter;
+  src:url("JMH%20Typewriter.otf") format("opentype");
+}
+@font-face{
+  font-family:Hand;
+  src:url("CoalhandLuke%20TRIAL.otf") format("opentype");
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  overflow-x:hidden;
+  color:#111;
+  font-family:Typewriter,serif;
+  background:#f4f2ec url("0D7DD486-A855-4A89-846C-6E6ECA6C75E3_1_201_a.jpeg") repeat;
+}
+a{color:inherit;text-decoration:none}
+
+.home{
+  position:relative;
+  height:100vh;
+  min-height:560px;
+  overflow:hidden;
+  color:white;
+  background:#000;
+}
+.hero-video{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+.ticker{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:70px;
+  display:flex;
+  align-items:center;
+  overflow:hidden;
+  z-index:3;
+  background:transparent;
+}
+.ticker-track{
+  display:flex;
+  width:max-content;
+  white-space:nowrap;
+  animation:move 22s linear infinite;
+}
+.ticker-group{display:flex}
+.ticker span{
+  font:1.5rem Hand,serif;
+  margin-right:65px;
+}
+@keyframes move{
+  from{transform:translateX(0)}
+  to{transform:translateX(-50%)}
+}
+.nav{
+  position:absolute;
+  top:70px;
+  left:0;
+  width:100%;
+  z-index:3;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  border-top:1px solid #ffffff88;
+  border-bottom:1px solid #ffffff88;
+}
+.nav a{
+  padding:20px 30px;
+  color:white;
+  border-right:1px solid #ffffff88;
+  font-size:1rem;
+  transition:.3s;
+}
+.nav a:hover{background:white;color:#111}
+
+.about{
+  min-height:100vh;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+}
+.about-video{
+  width:100%;
+  height:100%;
+  min-height:100vh;
+  object-fit:cover;
+}
+.about-content{
+  position:relative;
+  min-height:100vh;
+  overflow:hidden;
+  padding:90px clamp(35px,6vw,100px);
+}
+.number{
+  margin-bottom:55px;
+  font-size:.8rem;
+  letter-spacing:.15em;
+}
+.title{
+  position:relative;
+  z-index:2;
+  max-width:650px;
+  margin-bottom:40px;
+  color:#111;
+  font:clamp(3rem,5vw,5.5rem)/.95 Hand,serif;
+  transform:rotate(-2deg);
+  transform-origin:left center;
+  animation:write 1.8s ease both;
+}
+@keyframes write{
+  from{clip-path:inset(0 100% 0 0)}
+  to{clip-path:inset(0 0 0 0)}
+}
+.text{
+  position:relative;
+  z-index:2;
+  max-width:700px;
+  font-size:clamp(.95rem,1.15vw,1.15rem);
+  line-height:1.65;
+}
+.text p{margin-bottom:1.3em}
+
+.doodles{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+}
+.doodle{
+  position:absolute;
+  width:75px;
+  animation:swing 5s ease-in-out infinite;
+}
+.doodle img{width:100%;display:block}
+.lampada{
+  top:4%;
+  right:3%;
+  width:145px;
+  transform:rotate(5deg);
+}
+.tintas{
+  top:25%;
+  left:-2%;
+  transform:rotate(-5deg);
+}
+.italia{
+  top:46%;
+  right:2%;
+  width:110px;
+  transform:rotate(4deg);
+}
+.moda{
+  top:67%;
+  left:-1%;
+  transform:rotate(-4deg);
+}
+.cavalo{
+  top:84%;
+  right:3%;
+  width:145px;
+  transform:rotate(5deg);
+}
+@keyframes swing{
+  0%,100%{translate:0 0;rotate:-3deg}
+  50%{translate:0 7px;rotate:3deg}
+}
+
+.manifesto{
+  padding:55px clamp(30px,6vw,100px) 35px;
+}
+.values{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:25px;
+  font:clamp(2rem,3.7vw,4rem) Hand,serif;
+}
+.values span:nth-child(1){transform:rotate(-2deg)}
+.values span:nth-child(2){transform:rotate(2deg)}
+.values span:nth-child(3){transform:rotate(-1deg)}
+.values span:nth-child(4){transform:rotate(2deg)}
+
+.contacts{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:40px;
+  padding:20px clamp(30px,6vw,100px) 45px;
+}
+.eyes{
+  width:95px;
+  animation:float 5s ease-in-out infinite;
+}
+.eyes img{width:100%;display:block}
+@keyframes float{
+  0%,100%{transform:rotate(-2deg) translateY(0)}
+  50%{transform:rotate(2deg) translateY(-8px)}
+}
+.contact-list{
+  display:flex;
+  gap:20px;
+  list-style:none;
+}
+.contact{
+  width:76px;
+  height:76px;
+  display:grid;
+  place-items:center;
+  border:1px solid #111;
+  border-radius:50%;
+  transition:.3s;
+}
+.contact:hover{
+  color:white;
+  background:#111;
+  transform:translateY(-6px);
+}
+.contact svg{
+  width:25px;
+  height:25px;
+  fill:none;
+  stroke:currentColor;
+  stroke-width:1.6;
+}
+
+.footer{
+  display:flex;
+  justify-content:space-between;
+  padding:25px clamp(30px,6vw,100px) 35px;
+  border-top:1px solid #111;
+  font:1.25rem Hand,serif;
+}
+.top{
+  border:0;
+  background:none;
+  color:#111;
+  cursor:pointer;
+  font:inherit;
+}
+
+@media(max-width:700px){
+  .ticker{height:58px}
+  .nav{
+    top:58px;
+    grid-template-columns:repeat(2,1fr);
+  }
+  .nav a{padding:14px;font-size:.8rem}
+  .about{display:block}
+  .about-video{min-height:65vh}
+  .about-content{min-height:auto;padding:75px 28px}
+  .title{font-size:clamp(2.8rem,14vw,4.5rem)}
+  .doodle{width:50px}
+  .lampada,.cavalo{width:75px}
+  .italia{width:60px}
+  .values{
+    flex-direction:column;
+    align-items:flex-start;
+    font-size:clamp(2.5rem,13vw,4.5rem);
+    gap:12px;
+  }
+  .contacts{
+    flex-direction:column;
+    gap:28px;
+    padding-top:20px;
+  }
+  .footer{
+    flex-direction:column;
+    gap:12px;
+    font-size:1.1rem;
+  }
+}
+</style>
 </head>
 
 <body>
-  <main>
-    <section class="home" aria-label="Abertura do portfólio de Gabi Palermo">
-      <video class="hero-video" autoplay muted loop playsinline preload="auto">
-        <source src="videovintage.mp4" type="video/mp4">
-      </video>
 
-      <div class="video-fallback">Gabi Palermo</div>
+<main>
 
-      <div class="ticker">
-        <div class="ticker-track">
-          <div class="ticker-group">
-            <span class="ticker-text">I don’t just create content. I understand brands.</span>
-            <span class="ticker-text">I don’t just create content. I understand brands.</span>
-            <span class="ticker-text">I don’t just create content. I understand brands.</span>
-          </div>
+<section class="home">
+  <video class="hero-video" autoplay muted loop playsinline>
+    <source src="videovintage.mp4" type="video/mp4">
+  </video>
 
-          <div class="ticker-group" aria-hidden="true">
-            <span class="ticker-text">I don’t just create content. I understand brands.</span>
-            <span class="ticker-text">I don’t just create content. I understand brands.</span>
-            <span class="ticker-text">I don’t just create content. I understand brands.</span>
-          </div>
-        </div>
+  <div class="ticker">
+    <div class="ticker-track">
+      <div class="ticker-group">
+        <span>I don’t just create content. I understand brands.</span>
+        <span>I don’t just create content. I understand brands.</span>
+        <span>I don’t just create content. I understand brands.</span>
       </div>
-
-      <nav class="main-nav">
-        <a class="nav-link" href="#about">
-          <span class="nav-number">01</span>
-          <span>about</span>
-        </a>
-
-        <a class="nav-link" href="palermo.html">
-          <span class="nav-number">02</span>
-          <span>palermo</span>
-        </a>
-
-        <a class="nav-link" href="art.html">
-          <span class="nav-number">03</span>
-          <span>art</span>
-        </a>
-
-        <a class="nav-link" href="buy.html">
-          <span class="nav-number">04</span>
-          <span>influência</span>
-        </a>
-      </nav>
-    </section>
-
-    <section class="about-split" id="about">
-      <div class="about-media reveal reveal-left">
-        <video class="about-video" autoplay muted loop playsinline preload="metadata">
-          <source src="photobooth.mp4" type="video/mp4">
-        </video>
+      <div class="ticker-group">
+        <span>I don’t just create content. I understand brands.</span>
+        <span>I don’t just create content. I understand brands.</span>
+        <span>I don’t just create content. I understand brands.</span>
       </div>
+    </div>
+  </div>
 
-      <div class="about-content">
-        <div class="side-doodles" aria-hidden="true">
-          <span class="side-doodle doodle-lampada reveal reveal-right">
-            <img src="lampada.PNG" alt="">
-          </span>
+  <nav class="nav">
+    <a href="#about">01&nbsp; about</a>
+    <a href="palermo.html">02&nbsp; palermo</a>
+    <a href="art.html">03&nbsp; art</a>
+    <a href="buy.html">04&nbsp; influência</a>
+  </nav>
+</section>
 
-          <span class="side-doodle doodle-tintas reveal reveal-left">
-            <img src="tintas.PNG" alt="">
-          </span>
+<section class="about" id="about">
 
-          <span class="side-doodle doodle-italia reveal reveal-right">
-            <img src="italia.PNG" alt="">
-          </span>
+  <div>
+    <video class="about-video" autoplay muted loop playsinline>
+      <source src="photobooth.mp4" type="video/mp4">
+    </video>
+  </div>
 
-          <span class="side-doodle doodle-moda reveal reveal-left">
-            <img src="moda.PNG" alt="">
-          </span>
+  <div class="about-content">
 
-          <span class="side-doodle doodle-cavalo reveal reveal-right">
-            <img src="cavalo.PNG" alt="">
-          </span>
-        </div>
+    <div class="doodles">
+      <span class="doodle lampada"><img src="lampada.PNG" alt=""></span>
+      <span class="doodle tintas"><img src="tintas.PNG" alt=""></span>
+      <span class="doodle italia"><img src="italia.PNG" alt=""></span>
+      <span class="doodle moda"><img src="moda.PNG" alt=""></span>
+      <span class="doodle cavalo"><img src="cavalo.PNG" alt=""></span>
+    </div>
 
-        <p class="section-number reveal">01 / ABOUT</p>
+    <div class="number">01 / ABOUT</div>
 
-        <h1 class="about-title reveal write-heading" id="about-title">
-          Eu sou feita de intensidade.
-        </h1>
+    <h1 class="title">Eu sou feita de intensidade.</h1>
 
-        <div class="about-intro">
-          <p class="reveal">
-            Nunca soube viver pela metade.
-          </p>
+    <div class="text">
+      <p>Nunca soube viver pela metade.</p>
 
-          <p class="reveal">
-            Gosto do que provoca, do que desloca e do que faz sentir. Talvez por isso minha trajetória sempre tenha acontecido no encontro entre mundos aparentemente diferentes: a sensibilidade e a estratégia, a criação e os negócios, a tradição e a vontade de fazer diferente.
-          </p>
+      <p>Gosto do que provoca, do que desloca e do que faz sentir. Talvez por isso minha trajetória sempre tenha acontecido no encontro entre mundos aparentemente diferentes: a sensibilidade e a estratégia, a criação e os negócios, a tradição e a vontade de fazer diferente.</p>
 
-          <p class="reveal">
-            Talvez por isso eu tenha me formado em Fashion Design, em Milão. Porque sempre enxerguei a moda como uma forma de linguagem — uma maneira de contar histórias sem precisar dizer uma palavra. Mais tarde, fui para a Administração. Queria entender o outro lado da criação: como uma ideia ganha estrutura, atravessa o tempo e se transforma em algo maior do que ela mesma.
-          </p>
+      <p>Talvez por isso eu tenha me formado em Fashion Design, em Milão. Porque sempre enxerguei a moda como uma forma de linguagem — uma maneira de contar histórias sem precisar dizer uma palavra. Mais tarde, fui para a Administração. Queria entender o outro lado da criação: como uma ideia ganha estrutura, atravessa o tempo e se transforma em algo maior do que ela mesma.</p>
 
-          <p class="reveal">
-            Mas existe uma parte de mim que antecede tudo isso: a curiosidade por entender quem somos.<br>
-            Sou apaixonada por desenvolvimento humano e autoconhecimento. Já passei por diferentes retiros, cursos e experiências, e encontro no estoicismo, no espiritismo e no universo simbólico e espiritual diferentes caminhos para olhar para dentro. Tenho uma relação especial com pedras, rituais e tudo aquilo que carrega significado.
-          </p>
+      <p>Mas existe uma parte de mim que antecede tudo isso: a curiosidade por entender quem somos.<br>
+      Sou apaixonada por desenvolvimento humano e autoconhecimento. Já passei por diferentes retiros, cursos e experiências, e encontro no estoicismo, no espiritismo e no universo simbólico e espiritual diferentes caminhos para olhar para dentro. Tenho uma relação especial com pedras, rituais e tudo aquilo que carrega significado.</p>
 
-          <p class="reveal">
-            Ler é uma das minhas formas preferidas de me atravessar. Entre tantos assuntos, relações humanas sempre me fascinaram — porque acredito que o encontro com o outro também funciona como um espelho: revela partes nossas que, sozinhos, talvez demorássemos muito mais para enxergar.
-          </p>
-        </div>
-      </div>
-    </section>
+      <p>Ler é uma das minhas formas preferidas de me atravessar. Entre tantos assuntos, relações humanas sempre me fascinaram — porque acredito que o encontro com o outro também funciona como um espelho: revela partes nossas que, sozinhos, talvez demorássemos muito mais para enxergar.</p>
+    </div>
 
-    <section class="manifesto">
-      <div class="manifesto-inner">
-        <div class="manifesto-values reveal">
-          <span>Intensidade</span>
-          <span>Coragem</span>
-          <span>Sensibilidade</span>
-          <span>Ousadia</span>
-        </div>
-      </div>
-    </section>
+  </div>
+</section>
 
-    <section class="contacts">
-      <div class="eyes-contact reveal reveal-left">
-        <img src="olhos.PNG" alt="Ilustração de três olhos">
-      </div>
+<section class="manifesto">
+  <div class="values">
+    <span>Intensidade</span>
+    <span>Coragem</span>
+    <span>Sensibilidade</span>
+    <span>Ousadia</span>
+  </div>
+</section>
 
-      <ul class="contact-list reveal reveal-right">
-        <li>
-          <a class="contact-link" href="https://wa.me/5511984842027" target="_blank" aria-label="WhatsApp">
-            <svg viewBox="0 0 24 24">
-              <path d="M20 11.6a8 8 0 0 1-11.8 7L4 20l1.4-4A8 8 0 1 1 20 11.6Z"/>
-              <path d="M9 8.5c.5 2.5 2 4 4.5 5l1.5-1 2 1.5c-.5 1.5-1.5 2-3 2-3.5-.5-6-3-6.5-6.5 0-1.5.5-2.5 1.5-3l1.5 2Z"/>
-            </svg>
-          </a>
-        </li>
+<section class="contacts">
+  <div class="eyes">
+    <img src="olhos.PNG" alt="Ilustração de olhos">
+  </div>
 
-        <li>
-          <a class="contact-link" href="https://www.instagram.com/gabipalermoo/" target="_blank" aria-label="Instagram">
-            <svg viewBox="0 0 24 24">
-              <rect x="3" y="3" width="18" height="18" rx="5"/>
-              <circle cx="12" cy="12" r="4"/>
-              <circle cx="17.4" cy="6.7" r=".8" fill="currentColor" stroke="none"/>
-            </svg>
-          </a>
-        </li>
+  <ul class="contact-list">
+    <li>
+      <a class="contact" href="https://wa.me/5511984842027" target="_blank" aria-label="WhatsApp">
+        <svg viewBox="0 0 24 24">
+          <path d="M20 11.6a8 8 0 0 1-11.8 7L4 20l1.4-4A8 8 0 1 1 20 11.6Z"/>
+          <path d="M9 8.5c.5 2.5 2 4 4.5 5l1.5-1 2 1.5c-.5 1.5-1.5 2-3 2-3.5-.5-6-3-6.5-6.5 0-1.5.5-2.5 1.5-3l1.5 2Z"/>
+        </svg>
+      </a>
+    </li>
 
-        <li>
-          <a class="contact-link" href="mailto:gabrielapalermoandrade@gmail.com" aria-label="E-mail">
-            <svg viewBox="0 0 24 24">
-              <rect x="3" y="5" width="18" height="14" rx="1"/>
-              <path d="m4 7 8 6 8-6"/>
-            </svg>
-          </a>
-        </li>
-      </ul>
-    </section>
-  </main>
+    <li>
+      <a class="contact" href="https://www.instagram.com/gabipalermoo/" target="_blank" aria-label="Instagram">
+        <svg viewBox="0 0 24 24">
+          <rect x="3" y="3" width="18" height="18" rx="5"/>
+          <circle cx="12" cy="12" r="4"/>
+        </svg>
+      </a>
+    </li>
 
-  <script>
-    const videos = document.querySelectorAll("video");
+    <li>
+      <a class="contact" href="mailto:gabrielapalermoandrade@gmail.com" aria-label="E-mail">
+        <svg viewBox="0 0 24 24">
+          <rect x="3" y="5" width="18" height="14" rx="1"/>
+          <path d="m4 7 8 6 8-6"/>
+        </svg>
+      </a>
+    </li>
+  </ul>
+</section>
 
-    videos.forEach((video) => {
-      video.play().catch(() => {
-        document.addEventListener(
-          "touchstart",
-          () => video.play(),
-          { once: true }
-        );
-      });
-    });
+<footer class="footer">
+  <button class="top" type="button">bring to top ↑</button>
+  <span>Gabi Palermo © 2026</span>
+</footer>
 
-    const revealElements = document.querySelectorAll(".reveal");
+</main>
 
-    if ("IntersectionObserver" in window) {
-      const revealObserver = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add("is-visible");
-              revealObserver.unobserve(entry.target);
-            }
-          });
-        },
-        {
-          threshold: 0.14,
-          rootMargin: "0px 0px -8% 0px"
-        }
-      );
+<script>
+document.querySelectorAll("video").forEach(video=>{
+  video.play().catch(()=>{});
+});
 
-      revealElements.forEach((element) => {
-        revealObserver.observe(element);
-      });
-    } else {
-      revealElements.forEach((element) => {
-        element.classList.add("is-visible");
-      });
-    }
-  </script>
+document.querySelector(".top").addEventListener("click",()=>{
+  window.scrollTo({top:0,behavior:"smooth"});
+});
+</script>
+
 </body>
 </html>
