@@ -114,7 +114,6 @@ a{color:inherit;text-decoration:none}
   padding:.15em .5em .25em .05em;
   font:clamp(2.8rem,4.8vw,5.5rem)/.95 Hand,serif;
   transform:rotate(-2deg);
-  transform-origin:left center;
   overflow:visible;
   animation:write 1.8s steps(35,end) both;
 }
@@ -132,22 +131,13 @@ a{color:inherit;text-decoration:none}
 }
 .text p{
   opacity:0;
-  transform:translateY(35px);
+  transform:translateY(45px);
   margin-bottom:1.3em;
-  transition:opacity .8s ease,transform .8s ease;
+  transition:opacity 1s ease,transform 1s ease;
 }
 .text p.visible{
   opacity:1;
   transform:translateY(0);
-}
-.text p.typing::after{
-  content:"▌";
-  margin-left:2px;
-  animation:blink .8s steps(1) infinite;
-}
-@keyframes blink{
-  0%,45%{opacity:1}
-  46%,100%{opacity:0}
 }
 
 .doodles{
@@ -160,7 +150,7 @@ a{color:inherit;text-decoration:none}
   position:absolute;
   z-index:11;
   opacity:0;
-  transition:opacity .8s ease;
+  transition:opacity 1s ease;
   animation:swing 5s ease-in-out infinite;
 }
 .doodle.visible{opacity:1}
@@ -208,7 +198,7 @@ a{color:inherit;text-decoration:none}
   width:95px;
   opacity:0;
   transform:translateX(-60px);
-  transition:opacity .9s ease,transform .9s ease;
+  transition:opacity 1s ease,transform 1s ease;
 }
 .eyes.visible{
   opacity:1;
@@ -362,15 +352,16 @@ a{color:inherit;text-decoration:none}
     <h1 class="title">Eu sou feita de intensidade.</h1>
 
     <div class="text">
-      <p class="typing">Nunca soube viver pela metade.</p>
+      <p>Nunca soube viver pela metade.</p>
 
-      <p class="typing">Gosto do que provoca, do que desloca e do que faz sentir. Talvez por isso minha trajetória sempre tenha acontecido no encontro entre mundos aparentemente diferentes: a sensibilidade e a estratégia, a criação e os negócios, a tradição e a vontade de fazer diferente.</p>
+      <p>Gosto do que provoca, do que desloca e do que faz sentir. Talvez por isso minha trajetória sempre tenha acontecido no encontro entre mundos aparentemente diferentes: a sensibilidade e a estratégia, a criação e os negócios, a tradição e a vontade de fazer diferente.</p>
 
-      <p class="typing">Talvez por isso eu tenha me formado em Fashion Design, em Milão. Porque sempre enxerguei a moda como uma forma de linguagem — uma maneira de contar histórias sem precisar dizer uma palavra. Mais tarde, fui para a Administração. Queria entender o outro lado da criação: como uma ideia ganha estrutura, atravessa o tempo e se transforma em algo maior do que ela mesma.</p>
+      <p>Talvez por isso eu tenha me formado em Fashion Design, em Milão. Porque sempre enxerguei a moda como uma forma de linguagem — uma maneira de contar histórias sem precisar dizer uma palavra. Mais tarde, fui para a Administração. Queria entender o outro lado da criação: como uma ideia ganha estrutura, atravessa o tempo e se transforma em algo maior do que ela mesma.</p>
 
-      <p class="typing">Mas existe uma parte de mim que antecede tudo isso: a curiosidade por entender quem somos.<br>Sou apaixonada por desenvolvimento humano e autoconhecimento. Já passei por diferentes retiros, cursos e experiências, e encontro no estoicismo, no espiritismo e no universo simbólico e espiritual diferentes caminhos para olhar para dentro. Tenho uma relação especial com pedras, rituais e tudo aquilo que carrega significado.</p>
+      <p>Mas existe uma parte de mim que antecede tudo isso: a curiosidade por entender quem somos.<br>
+      Sou apaixonada por desenvolvimento humano e autoconhecimento. Já passei por diferentes retiros, cursos e experiências, e encontro no estoicismo, no espiritismo e no universo simbólico e espiritual diferentes caminhos para olhar para dentro. Tenho uma relação especial com pedras, rituais e tudo aquilo que carrega significado.</p>
 
-      <p class="typing">Ler é uma das minhas formas preferidas de me atravessar. Entre tantos assuntos, relações humanas sempre me fascinaram — porque acredito que o encontro com o outro também funciona como um espelho: revela partes nossas que, sozinhos, talvez demorássemos muito mais para enxergar.</p>
+      <p>Ler é uma das minhas formas preferidas de me atravessar. Entre tantos assuntos, relações humanas sempre me fascinaram — porque acredito que o encontro com o outro também funciona como um espelho: revela partes nossas que, sozinhos, talvez demorássemos muito mais para enxergar.</p>
     </div>
 
   </div>
@@ -429,53 +420,22 @@ a{color:inherit;text-decoration:none}
 </main>
 
 <script>
-const paragraphs=document.querySelectorAll(".typing");
+const paragraphs=document.querySelectorAll(".text p");
 const doodles=document.querySelectorAll(".doodle");
 const values=document.querySelector(".values");
 const eyes=document.querySelector(".eyes");
 
-paragraphs.forEach(p=>{
-  p.dataset.text=p.textContent.replace(/\s+/g," ").trim();
-  p.textContent="";
-});
-
-function typeText(element){
-  if(element.dataset.done)return;
-  element.dataset.done="true";
-  element.classList.add("visible","typing");
-  const text=element.dataset.text;
-  let i=0;
-
-  function write(){
-    if(i<text.length){
-      element.textContent+=text[i];
-      i++;
-      setTimeout(write,18);
-    }else{
-      element.classList.remove("typing");
-    }
-  }
-
-  write();
-}
-
 const observer=new IntersectionObserver(entries=>{
   entries.forEach(entry=>{
-    if(!entry.isIntersecting)return;
-
-    const element=entry.target;
-    element.classList.add("visible");
-
-    if(element.classList.contains("typing")){
-      setTimeout(()=>typeText(element),450);
+    if(entry.isIntersecting){
+      entry.target.classList.add("visible");
+      observer.unobserve(entry.target);
     }
-
-    observer.unobserve(element);
   });
 },{threshold:.18});
 
-paragraphs.forEach(p=>observer.observe(p));
-doodles.forEach(d=>observer.observe(d));
+paragraphs.forEach(item=>observer.observe(item));
+doodles.forEach(item=>observer.observe(item));
 observer.observe(values);
 observer.observe(eyes);
 
@@ -484,7 +444,10 @@ document.querySelectorAll("video").forEach(video=>{
 });
 
 document.querySelector(".top").addEventListener("click",()=>{
-  window.scrollTo({top:0,behavior:"smooth"});
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
 });
 </script>
 
