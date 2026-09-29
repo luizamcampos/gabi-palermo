@@ -113,16 +113,12 @@ a{
 }
 
 .number{
-  position:relative;
-  z-index:2;
   margin-bottom:55px;
   font-size:.8rem;
   letter-spacing:.15em;
 }
 
 .title{
-  position:relative;
-  z-index:2;
   width:fit-content;
   max-width:100%;
   margin-bottom:40px;
@@ -132,28 +128,9 @@ a{
   font-weight:400;
   line-height:1;
   transform:rotate(-2deg);
-  clip-path:inset(0 100% 0 0);
-  opacity:0;
-}
-
-.title.visible{
-  opacity:1;
-  animation:handwrite 1.8s steps(35,end) forwards;
-}
-
-@keyframes handwrite{
-  from{
-    clip-path:inset(0 100% 0 0);
-  }
-
-  to{
-    clip-path:inset(0 0 0 0);
-  }
 }
 
 .text{
-  position:relative;
-  z-index:2;
   max-width:700px;
   font-size:clamp(.95rem,1.15vw,1.15rem);
   line-height:1.65;
@@ -191,32 +168,22 @@ a{
 .values span{
   display:inline-block;
   padding:.15em .16em .25em;
-  opacity:0;
-  clip-path:inset(0 100% 0 0);
-}
-
-.values.visible span{
-  animation:handwrite 1.4s steps(25,end) forwards;
 }
 
 .values span:nth-child(1){
   transform:rotate(-2deg);
-  animation-delay:.1s;
 }
 
 .values span:nth-child(2){
   transform:rotate(2deg);
-  animation-delay:.35s;
 }
 
 .values span:nth-child(3){
   transform:rotate(-1deg);
-  animation-delay:.6s;
 }
 
 .values span:nth-child(4){
   transform:rotate(2deg);
-  animation-delay:.85s;
 }
 
 /* CONTATO */
@@ -245,13 +212,6 @@ a{
   font-weight:400;
   line-height:1;
   transform:rotate(-2deg);
-  opacity:0;
-  clip-path:inset(0 100% 0 0);
-}
-
-.contact-title.visible{
-  opacity:1;
-  animation:handwrite 1.6s steps(25,end) forwards;
 }
 
 .contact-list{
@@ -577,9 +537,9 @@ a{
 </main>
 
 <script>
-const revealItems = document.querySelectorAll(
-  ".title, .text p, .values, .contact-title, .contact-list, .eyes"
-);
+const paragraphs = document.querySelectorAll(".text p");
+const contactList = document.querySelector(".contact-list");
+const eyes = document.querySelector(".eyes");
 
 const observer = new IntersectionObserver(entries => {
   entries.forEach(entry => {
@@ -589,12 +549,12 @@ const observer = new IntersectionObserver(entries => {
     }
   });
 },{
-  threshold:0.16
+  threshold:0.12
 });
 
-revealItems.forEach(item => {
-  observer.observe(item);
-});
+paragraphs.forEach(item => observer.observe(item));
+observer.observe(contactList);
+observer.observe(eyes);
 
 document.querySelectorAll("video").forEach(video => {
   video.play().catch(() => {});
