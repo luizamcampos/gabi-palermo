@@ -182,6 +182,7 @@ a{
 
 .contact-list{
   display:flex;
+  flex-wrap:nowrap;
   gap:20px;
   list-style:none;
   opacity:0;
@@ -221,6 +222,7 @@ a{
 .eyes{
   width:105px;
   margin-top:8px;
+  flex-shrink:0;
   opacity:0;
   transform:translateX(60px);
   transition:opacity 1s ease,transform 1s ease;
@@ -252,6 +254,7 @@ a{
 .footer{
   display:flex;
   justify-content:space-between;
+  align-items:center;
   padding:20px clamp(30px,6vw,100px) 30px;
   border-top:1px solid #111;
   font-family:Hand,serif;
@@ -290,11 +293,22 @@ a{
 
   .nav{
     grid-template-columns:repeat(2,1fr);
+    background:#f4f2ecb8;
+    border-top:1px solid #1112;
+    border-bottom:1px solid #1113;
   }
 
   .nav a{
-    padding:14px;
-    font-size:.8rem;
+    padding:15px 8px;
+    color:#111;
+    text-align:center;
+    border-color:#1112;
+    font-size:.85rem;
+  }
+
+  .nav a:hover{
+    color:#fff;
+    background:#111;
   }
 
   .about{
@@ -344,12 +358,13 @@ a{
   .contacts{
     min-height:auto;
     align-items:flex-start;
-    gap:28px;
+    gap:20px;
     padding:30px 28px 35px;
   }
 
   .contact-left{
     gap:16px;
+    min-width:0;
   }
 
   .contact-title{
@@ -357,45 +372,58 @@ a{
   }
 
   .contact-list{
+    flex-wrap:nowrap;
     gap:10px;
   }
 
   .contact{
-    width:58px;
-    height:58px;
+    width:55px;
+    height:55px;
+    flex-shrink:0;
   }
 
   .contact svg{
-    width:21px;
-    height:21px;
+    width:20px;
+    height:20px;
   }
 
   .eyes{
-    width:78px;
+    width:72px;
     margin-top:6px;
   }
 
   .footer{
-    flex-direction:column;
-    gap:12px;
-    padding:25px 28px 35px;
-    font-size:1.2rem;
+    flex-direction:row;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+    padding:20px 28px 28px;
+    font-size:1rem;
+    white-space:nowrap;
   }
 }
 
-@media(max-width:430px){
+@media(max-width:380px){
 
   .contacts{
-    gap:18px;
+    padding-left:20px;
+    padding-right:20px;
+    gap:14px;
   }
 
-  .contact-list{
-    flex-wrap:wrap;
-    max-width:130px;
+  .contact{
+    width:50px;
+    height:50px;
   }
 
   .eyes{
-    width:68px;
+    width:63px;
+  }
+
+  .footer{
+    padding-left:20px;
+    padding-right:20px;
+    font-size:.9rem;
   }
 }
 </style>
@@ -507,7 +535,7 @@ a{
 
   <button class="top" type="button">bring to top ↑</button>
 
-  <span>Gabi Palermo ©️ 2026</span>
+  <span>Gabi Palermo © 2026</span>
 
 </footer>
 
