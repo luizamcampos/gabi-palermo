@@ -57,6 +57,10 @@ a{
   object-fit:cover;
 }
 
+.hero-video-mobile{
+  display:none;
+}
+
 .nav{
   position:absolute;
   top:0;
@@ -96,6 +100,7 @@ a{
 
 .about-video-wrapper{
   min-height:100vh;
+  background:#b42122;
 }
 
 .about-video{
@@ -270,6 +275,19 @@ a{
 
 @media(max-width:700px){
 
+  .home{
+    height:100svh;
+    min-height:620px;
+  }
+
+  .hero-video-desktop{
+    display:none;
+  }
+
+  .hero-video-mobile{
+    display:block;
+  }
+
   .nav{
     grid-template-columns:repeat(2,1fr);
   }
@@ -280,38 +298,54 @@ a{
   }
 
   .about{
-    display:block;
-  }
-
-  .about-video-wrapper{
-    min-height:65vh;
-  }
-
-  .about-video{
-    min-height:65vh;
+    display:flex;
+    flex-direction:column;
   }
 
   .about-content{
+    order:1;
     min-height:auto;
-    padding:75px 28px;
+    padding:70px 28px 45px;
+  }
+
+  .about-video-wrapper{
+    order:2;
+    min-height:80vh;
+    background:#b42122;
+  }
+
+  .about-video{
+    min-height:80vh;
+    height:80vh;
+    object-fit:cover;
   }
 
   .number{
-    margin-bottom:35px;
+    margin-bottom:32px;
   }
 
   .title{
     width:100%;
     max-width:100%;
+    margin-bottom:32px;
     padding-right:.5em;
     font-size:clamp(3rem,14vw,4.8rem);
+  }
+
+  .text{
+    font-size:1rem;
+    line-height:1.62;
+  }
+
+  .text p{
+    margin-bottom:1.45em;
   }
 
   .contacts{
     min-height:auto;
     align-items:flex-start;
     gap:28px;
-    padding:25px 28px 35px;
+    padding:30px 28px 35px;
   }
 
   .contact-left{
@@ -373,8 +407,12 @@ a{
 
 <section class="home">
 
-  <video class="hero-video" autoplay muted loop playsinline>
+  <video class="hero-video hero-video-desktop" autoplay muted loop playsinline>
     <source src="videovintage.mp4" type="video/mp4">
+  </video>
+
+  <video class="hero-video hero-video-mobile" autoplay muted loop playsinline>
+    <source src="videocapavertical.MOV" type="video/quicktime">
   </video>
 
   <nav class="nav">
